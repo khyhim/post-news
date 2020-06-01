@@ -1,0 +1,240 @@
+@charset "UTF-8";
+.subcomment{
+    display: none;
+}
+.top-bar {
+    padding: 5px 0;
+}
+ul.nav.commentstyle {
+    padding: 0 0;
+    margin: 0 0 0px 0;
+}
+ul.nav.commentstyle li{
+    padding: 2px 0;
+    margin: 0 0 15px 0;
+    border-bottom: 1px dotted #eceaea;
+}
+ul.navbar-nav.mx-auto.mx-md-0.hide_rsp {
+    margin: 0;
+    padding: 0;
+}
+.sponsor_by {
+    margin-top: 18px !important;
+    margin-left: 0px !important;
+    margin-right: 0;
+    font-weight: 700;
+}
+.pagination {
+  
+    margin: 22px 0 0 0 !important;
+ 
+}
+.item:hover .box .ele {
+    box-shadow:none !important;
+    opacity: 0.7;
+    S
+}
+p.author {
+    width: 300px;
+    float: left;
+    margin-left: 15px;
+}
+.news-items>.title {
+    margin-top: 0px !important;
+   
+}
+.single .sponsor_img {
+    margin-top: 0px !important;
+}
+.post-top-bar {
+   
+    height: 60px !important;
+    
+}
+#menu.navbar-inverse .navbar-nav>li.active>a {
+    background: #3c4188 !important;
+}
+#menu.navbar, #menu.navbar #overflow {
+    background-color: #474daf !important;
+}
+
+.ads_items img {    
+    margin-bottom: 5px !important;
+}
+.single .sponsor_by {
+   
+    margin-right: 10px !important;
+}
+.sponsor_img {
+    background-size: 65%;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 127px !important;
+    height: 44px !important;
+    margin-left: 6px !important;
+    margin-bottom: 4px !important;
+}
+.container.wrap_con_cic {
+    padding: 0 !important;
+    margin: 0 !important;
+}
+img.imgloadnext {
+    display: inherit;
+    width: 14px;
+    height: 20px;   
+    position: absolute;
+    margin-top: 7px;
+    margin-left: 5px;
+}
+.navbar-nav {
+   
+    list-style: none;
+}
+nav.left-topbar.navbar.navbar-expand.px-0 {
+    margin-left: 14px;
+    min-height: 0 !important;
+    margin-bottom: 0 !important;
+}
+nav.right-topbar.navbar.navbar-expand.px-0{
+    min-height: 0 !important;
+}
+a.imgsocial img {
+    width: 63%;
+    height: 15% !important;
+}
+ul.navbar-nav.ml-md-auto.mr-md-0.mx-auto {
+    margin-left: 230px;
+}
+img.iconcall{
+    width: 13%;
+    height: 15% !important;
+    margin-right: 4px;
+}
+img.iconsms{
+    width: 10%;
+    height: 15% !important;
+    margin-right: 5px;
+}
+#top {
+    background-color: #ffffff !important;
+  
+}
+ul.navbar-nav.mx-auto.mx-md-0.hide_rsp li {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+.col-md-7.header_contact {
+
+    margin: 0px;
+    padding: 0px;
+}
+.col-md-5.header_socail {
+    height: 0px !important;
+}
+
+#footer .about ul {
+    position: relative;
+}
+
+#footer .about ul li {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    position: absolute;
+    top: 0;    
+    background-size:158%;
+}
+
+#footer .about ul li, #footer .about ul li a {
+    height: 40px;
+    display: block;
+}
+
+#sabay_news {    
+    left: 0px;
+    width: 40px;
+    background: url('../images/brands.png') -12px -12px;
+}
+
+#kanha {
+    left: 40px;
+    width: 40px;
+    background: url('../images/brands.png') -12px -59px;
+}
+
+#sabay_enovel {
+    left: 80px;
+    width: 40px;
+    background: url('../images/brands.png') -12px -107px;
+}
+
+#kley_kley {    
+    left: 120px;
+    width: 40px;
+    background: url('../images/brands.png') -12px -155px;
+}
+
+#sabay_der {    
+    left: 160px;
+    width: 40px;
+    background: url('../images/brands.png') -12px -203px;
+}
+
+#sabay_news_entertainment {    
+    left: 200px;
+    width: 40px;
+    background: url('../images/brands.png') -12px -251px;
+}
+
+#sabay_news_social {    
+    left: 240px;
+    width: 40px;
+    background: url('../images/brands.png') -12px -299px;
+}
+
+#sabay_news_sport {    
+    left: 280px;
+    width: 40px;
+    background: url('../images/brands.png') -12px -347px;
+}
+
+#sabay_news_tech {    
+    left: 320px;
+    width: 40px;
+    background: url('../images/brands.png') -12px -395px;
+}
+
+.header_contact .navbar ul li.nav-item{
+    font-size: 15px;
+    margin-left: 0;
+    margin-right: 20px;
+}
+
+.header_contact .navbar ul li.nav-item {
+    background: url(../img/icon/phone_h.png) left center no-repeat;
+    background-size: 14px;
+    padding-left: 19px;
+}
+
+.header_contact .navbar ul li.nav-item:last-child {
+    background: url(../img/icon/mail_h.png) left center no-repeat;
+    background-size: 17px;
+    padding-left: 23px;
+}
+#contact {
+    padding-top: 130px;
+    margin-top: -130px;
+}
+.header_contact .navbar ul li.nav-item i{
+    margin-right: 5px;
+    display: none;
+}
+
+.header_socail .navbar ul li a:hover img{
+    opacity: 0.8;
+}
+
+.header_socail .navbar ul li a {
+    line-height: 21px;
+}
