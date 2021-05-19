@@ -23,7 +23,18 @@
             </a>
           </li>
           @endforeach
-          
+         
+          <li role="presentation" class="switch-view-li">
+            <a href="#" class="switch-view" id="grid">
+              <i class="fa fa-th-large"></i>
+            </a>
+          </li>
+          <li role="presentation" class="active switch-view-li">
+            <a href="#" class="switch-view" id="list">
+              <i class="fa fa-th-list"></i>
+            </a>
+          </li>
+     
         </ul>
         <!-- Tab panes -->
         <div class="tab-content white-bg category-tab-content">
@@ -58,7 +69,7 @@
                           
                           <div class="small">
                             <ul>
-                              <li> <span class="pub-date" date="{{ $pressalllist->created_at->format('l j F Y H:i:s')}}">{{ $pressalllist->created_at->format('d/m/Y')}}</span></li>
+                              <li> <span class="pub-date" date="{{ $pressalllist->created_at}}">{{ $pressalllist->created_at}}</span></li>
                             </ul>
                             <div class="clear"></div>
                           </div>
@@ -111,34 +122,8 @@
         <!-- Popular news block -->
     <div class="posts_item right-hot-news">
       <div class="">
-        <div class="title">@lang('header.populararticles')<div class="border"></div></div>
-        @foreach ($articleview as $articleviews)     
-                     
-                     <div class="media">
-                                   <div class="media-left right-small-post item">
-                                     <a class="get" rel="{{ $articleviews->id }}" href="{{route('pressrelease',$articleviews->id)}}?pressrelease={{$articleviews->categories_id}}">
-                                       <div class="img lozad" data-background-image="{{asset('')}}/{{$articleviews->images}}" data-loaded="true" style="background-image: url('{{asset('')}}/{{$articleviews->images}}');"></div>
-                                      
-                                     </a>
-                                   </div>
-                                   <div class="media-body">
-                                     <a class="get" rel="{{ $articleviews->id }}" href="{{route('pressrelease',$articleviews->id)}}?pressrelease={{$articleviews->categories_id}}">
-                                     
-                                     @if(Session::has('lang')) 
-                  @if($lang == 'kh') 
-                  {{str_limit($articleviews->title_kh, 40)}}
-                      @else  
-                      {{str_limit($articleviews->title_en, 40)}}
-                      @endif @else 
-                      {{str_limit($articleviews->title_kh, 40)}}
-                      @endif 
-                                     </a>
-                                   </div>
-                                 </div>
-                                     @endforeach  
-                                      <div class="clear"></div>
+        @include('include.pop-news')
       </div>
-    </div>
     <div id="ad_zone_02" class="ads_items web" zone="117">
     @foreach ($adspressbarcenter as $adspressbarcenters)
     <a href="{{$adspressbarcenters->url}}" target="_blank">
@@ -150,35 +135,8 @@
     
     <div class="posts_item right-hot-news">
       <div class="">
-        <div class="title">@lang('header.newarticles')<div class="border"></div></div>
-        @foreach ($article as $articles)     
-                     
-                     <div class="media">
-                                   <div class="media-left right-small-post item">
-                                     <a class="get" rel="{{ $articles->id }}" href="{{route('pressrelease',$articles->id)}}?pressrelease={{$articles->categories_id}}">
-                                       <div class="img lozad" data-background-image="{{asset('')}}/{{$articles->images}}" data-loaded="true" style="background-image: url('{{asset('')}}/{{$articles->images}}');"></div>
-                                      
-                                     </a>
-                                   </div>
-                                   <div class="media-body">
-                                     <a class="get" rel="{{ $articles->id }}" href="{{route('pressrelease',$articles->id)}}?pressrelease={{$articles->categories_id}}">
-                                    
-                                      
-                                     @if(Session::has('lang')) 
-                  @if($lang == 'kh') 
-                  {{str_limit($articles->title_kh, 40)}}
-                      @else  
-                      {{str_limit($articles->title_en, 40)}}
-                      @endif @else 
-                      {{str_limit($articles->title_kh, 40)}}
-                      @endif 
-                                     </a>
-                                   </div>
-                                 </div>
-                                     @endforeach  
-        <div class="clear"></div>
+        @include('include.new-news')
       </div>
-    </div>
     <div id="ad_zone_03" class="ads_items web" zone="117">
     
     @foreach ($adspressbarbottom as $adspressbarbottoms)

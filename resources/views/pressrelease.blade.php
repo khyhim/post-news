@@ -43,7 +43,7 @@
                        </p></div>
             <div class="small">
               <ul class="ico">
-                <li> <span id="sdate">{{ $pressrelease->created_at->format('d/m/Y')}}</span></li>
+                <li> <span id="sdate">{{ $pressrelease->created_at}}</span></li>
                 
                 <li>
                    @lang('header.comment') <span>{{ $wordCount}}</span>
@@ -176,34 +176,7 @@
         <!-- Popular news block -->
     <div class="posts_item right-hot-news">
       <div class="bg">
-        <div class="title">@lang('header.populararticles')<div class="border"></div></div>
-        @foreach ($articleview as $articleviews)     
-                     
-                     <div class="media">
-                                   <div class="media-left right-small-post item">
-                                     <a class="get" rel="{{ $articleviews->id }}" href="{{route('pressrelease',$articleviews->id)}}?pressrelease={{$articleviews->categories_id}}">
-                                       <div class="img lozad" data-background-image="{{asset('')}}/{{$articleviews->images}}" data-loaded="true" style="background-image: url('{{asset('')}}/{{$articleviews->images}}');"></div>
-                                      
-                                     </a>
-                                   </div>
-                                   <div class="media-body">
-                                     <a class="get" rel="{{ $articleviews->id }}" href="{{route('pressrelease',$articleviews->id)}}?pressrelease={{$articleviews->categories_id}}">
-                                      
-                                     @if(Session::has('lang')) 
-                  @if($lang == 'kh') 
-                  {{str_limit($articleviews->title_kh, 40)}}
-                      @else  
-                      {{str_limit($articleviews->title_en, 40)}}
-                      @endif @else 
-                      {{str_limit($articleviews->title_kh, 40)}}
-                      @endif 
-                                     </a>
-                                   </div>
-                                 </div>
-                                     @endforeach  
-                                     
-                                                  <div class="clear"></div>
-      </div>
+        @include('include.pop-news')
     </div>
 
     <div id="ad_zone_02" class="ads_items web" zone="117">
@@ -216,34 +189,8 @@
 
     <div class="posts_item right-hot-news">
       <div class="bg">
-        <div class="title">@lang('header.newarticles')<div class="border"></div></div>
-        @foreach ($article as $articles)     
-                     
-                     <div class="media">
-                                   <div class="media-left right-small-post item">
-                                     <a class="get" rel="{{ $articles->id }}" class="get" rel="{{ $articles->id }}" href="{{route('pressrelease',$articles->id)}}?pressrelease={{$articles->categories_id}}">
-                                       <div class="img lozad" data-background-image="{{asset('')}}/{{$articles->images}}" data-loaded="true" style="background-image: url('{{asset('')}}/{{$articles->images}}');"></div>
-                                      
-                                     </a>
-                                   </div>
-                                   <div class="media-body">
-                                     <a class="get" rel="{{ $articles->id }}" href="{{route('pressrelease',$articles->id)}}?pressrelease={{$articles->categories_id}}">
-                                      
-                                     @if(Session::has('lang')) 
-                  @if($lang == 'kh') 
-                  {{str_limit($articles->title_kh, 40)}}
-                      @else  
-                      {{str_limit($articles->title_en, 40)}}
-                      @endif @else 
-                      {{str_limit($articles->title_kh, 40)}}
-                      @endif 
-                                     </a>
-                                   </div>
-                                 </div>
-                                     @endforeach  
-
-       <div class="clear"></div>
-      </div>
+        @include('include.new-news')
+    
     </div>
     <div id="ad_zone_03" class="ads_items web" zone="117">
     @foreach ($pressreleasebottom as $pressreleasebottoms)

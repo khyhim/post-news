@@ -7,15 +7,16 @@
       <title>index</title>       
   <meta content="width=device-width,initial-scale=1" name=viewport>    
       <link href="{{asset('front/css/style.css')}}" rel="stylesheet" type="text/css" />
-    <link href="{{asset('front/css/customiz.css')}}" rel="stylesheet" type="text/css" />  
+    <link href="{{asset('front/css/customiz.css')}}" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">  
     <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
     </head>
 
   <body>
-
 <section id="top">
-    <div class="container">     
-      <div class="top-bar">
+   
+    <div class="container"> 
+       <div class="top-bar">
         <div class="container wrap_con_cic">
             <div class="row">
                 <div class="col-md-7 header_contact">
@@ -45,6 +46,20 @@
                 </div>
             </div>
         </div>
+
+    <div class="logo">
+        <a href="/">
+          <img class="lozad" data-src="{{url('logo.png')}}" src="{{url('logo.png')}}" data-loaded="true">
+        </a>
+      </div>  
+
+       <div class="ads web ads_items" id="ad_zone_01" zone="7">
+              <ins style="text-decoration: none;"><a href="" target="_blank"><img src="{{url('smart.jpg')}}" width="728" height="90" alt="" title="" border="0"></a><div id="beacon_2786146acf" style="position: absolute; left: 0px; top: 0px; visibility: hidden;">
+               </div></ins>
+              </div>
+          </div>
+
+     
     </div>
     </div>
   </section>
@@ -65,11 +80,10 @@
         <div class="collapse navbar-collapse navbar-ex1-collapse">
             <ul class="nav navbar-nav">
                 <li class="active home">
-                    <a href="/">FeedNews</a>
-                  
+                    <a href="/"> <i class="fa fa-home"></i></a>                 
                 </li>
                 <?php $lang = session()->get('lang') ; ?>
-                @foreach ($category as $categories)                            
+                @foreach ($categorysssss as $categories)                            
                            
             <li class="category ">
                     <a href="{{route('press',['id'=>$categories->id])}}">                  
@@ -86,7 +100,7 @@
                 </li>
                 @endforeach          
                 
-                @foreach ($tag as $tags)      
+                @foreach ($tagssss as $tags)      
                     <li class="tag" id="road-home-3">
                          <a href="{{route('tag',['id'=>$tags->id])}}" class="web menu_road-home-3">
                         
@@ -104,20 +118,19 @@
                     </li>
                 @endforeach     
                      
-                @foreach ($categorylast as $categorieslast)     
+       
               <li class="link">
-                  <a href="{{route('press',['id'=>$categorieslast->id])}}" class="web">
-                  @if(Session::has('lang')) 
-                      @if($lang == 'kh') 
-                          {{$categorieslast->title_kh}}
-                      @else {{$categorieslast->title_en}} 
-                      @endif @else 
-                      {{$categorieslast->title_kh}} 
-                      @endif
+                  <a href="#" class="web">
+                 ផ្សព្វផ្សាយ
                   </a>
                  
                 </li>
-                @endforeach  
+        <li class="link">
+                  <a href="#" class="web">
+                 អំពីយើង
+                  </a>
+                 
+                </li>
 
             </ul>
             
@@ -176,9 +189,7 @@
     
   </div>
 </section>
-<!-- <script src="https://code.jquery.com/jquery-3.0.0.js"></script>
-<script src="https://code.jquery.com/jquery-migrate-3.1.0.js"></script>
-<script src="{{asset('front/js/jquery-3.4.1.js')}}" type="text/javascript"></script>  -->
+
 <script src="{{asset('front/js/script.js')}}" type="text/javascript"></script> 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script type="text/javascript">
@@ -198,13 +209,8 @@
       });
               
     });
-   
-    
-
 
   });
 </script>
-
-
     </body>
 </html>

@@ -1,0 +1,85 @@
+  <?php
+                                $images = $row->images;
+
+                                $count_image = 0;
+                                if ($images != null) {
+                                    $images = explode(',', $images);
+                                    $count_image = count($images);
+                                    echo $count_image;
+                                }
+                                ?>
+                                @if($count_image > 0)
+
+                                    @foreach($images as $p)
+                                        <div class="images">
+                                            <div class='remove_photo'></div>
+                                            <input type="file" name='images[]' value='{{$p}}' multiple >
+                                            <a data-lightbox='roadtrip' href='{{asset($p)}}'>
+                                                <div class='custom-file-container__image-multi-preview_custom_css'
+                                                     style='background-image: url({{asset($p)}})'></div>
+                                            </a>
+                                        </div>
+                                    @endforeach
+                                @else
+                                    <input type='hidden' name='uploaded_image' value='' style="display: none;"/>
+                                    <h1 style="text-align: center;">NO IMAGES</h1>
+                                @endif
+      
+        JavaScript
+      
+    
+    
+    
+      $.ajax({
+                url: '{{ route("web_posts.getPostFiles") }}',
+                method: "POST",
+                data: { post_id : '{{ $row->id }}' },
+                dataType: "json",
+                success: (response) => {
+                    var data = [];
+                    var dataConfig = [];
+                    for (let index = 0; index < response.length; index++) {
+                        const element = response[index];
+                        data[index] = site_url + '/' + element.path;
+                        dataConfig[index] = { caption: element.name, url: site_url + "/admin/web_posts/delete-image-post/" + element.id, key: index }
+                    }
+                    $("#feature_image").fileinput({
+                        uploadUrl: "/file-upload-batch/2",
+                        showUpload: false,
+                        theme: 'fa',
+                        autoReplace: false,
+                        maxFileSize: 2048,
+                        maxFilePreviewSize: 2048,
+                        allowedFileExtensions: ["jpg", "jpeg", "png", "gif"],
+                        overwriteInitial: false,
+                        showRemove: false,
+                        showClose: false,
+                        initialPreview: data,
+                        initialPreviewFileType: 'image',
+                        initialPreviewAsData: true,
+                        initialPreviewConfig: dataConfig,
+                        fileActionSettings : {
+                            showUpload : false,
+                        },
+                    }).on('filesorted', function(e, params) {
+                        console.log('file sorted', e, params);
+                    }).on('fileuploaded', function(e, params) {
+                        console.log('file uploaded', e, params);
+                    }).on('filebeforedelete', function() {
+                        var aborted = !window.confirm('You will not be able to recover this record data!\nAre you sure you want to delete this file?');
+                        if (aborted) {
+                            window.alert('File deletion was aborted! ');
+                        };
+                        return aborted;
+                    }).on('filedeleted', function() {
+                        setTimeout(function() {
+                            window.alert('File deletion was successful! ');
+                        }, 900);
+                    });
+                }
+            })
+    
+    
+  
+  
+

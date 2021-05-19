@@ -4,6 +4,7 @@
 	use Request;
 	use DB;
 	use CRUDBooster;
+    use Illuminate\Support\Facades\Input;
 
 	class AdminArticlesController extends \crocodicstudio\crudbooster\controllers\CBController {
 
@@ -35,6 +36,10 @@
 			$this->col[] = ["label"=>"Images","name"=>"images","image"=>true];
 			$this->col[] = ["label"=>"Title Kh","name"=>"title_kh"];
 			$this->col[] = ["label"=>"Title En","name"=>"title_en"];
+			$this->col[] = ["label"=>"Active","name"=>"active","width"  => "10%",
+			"callback_php"=>'number_format($row->active)== 1 ? "ON" : "OFF"'];
+			// "width"  => "10%",
+			// "callback_php"=>'number_format($row->active) == 1 ? "ON" : "OFF" '
 			# END COLUMNS DO NOT REMOVE THIS LINE
 
 			# START FORM DO NOT REMOVE THIS LINE
@@ -47,6 +52,7 @@
 			$this->form[] = ['label'=>'Images','name'=>'images','type'=>'upload','validation'=>'required','width'=>'col-sm-9'];
 			$this->form[] = ['label'=>'Article Kh','name'=>'article_kh','type'=>'wysiwyg','width'=>'col-sm-10'];
 			$this->form[] = ['label'=>'Article En','name'=>'article_en','type'=>'wysiwyg','width'=>'col-sm-10'];
+			$this->form[] = ['label'=>'Active','name'=>'active','type'=>'select','validation'=>'required','width'=>'col-sm-9','dataenum'=>'1;0'];
 			# END FORM DO NOT REMOVE THIS LINE
 
 			# OLD START FORM
@@ -89,7 +95,8 @@
 	        */
 	        $this->addaction = array();
 
-
+$this->addaction[] = ['label'=>'Set Active','url'=>CRUDBooster::mainpath('set-status/0/[id]'),'icon'=>'fa fa-check','color'=>'success','showIf'=>"[active] == '1'"];
+$this->addaction[] = ['label'=>'Set Pending','url'=>CRUDBooster::mainpath('set-status/1/[id]'),'icon'=>'fa fa-ban','color'=>'warning','showIf'=>"[active] == '0'", 'confirmation' => true];
 	        /* 
 	        | ---------------------------------------------------------------------- 
 	        | Add More Button Selected
@@ -269,7 +276,7 @@
 	    public function hook_before_add(&$postdata) {        
 	        //Your code here
 			$postdata['user_id']=CRUDBooster::myID();
-
+		    return $postdata;
 	    }
 
 	    /* 
@@ -295,7 +302,7 @@
 	    public function hook_before_edit(&$postdata,$id) {        
 	        //Your code here
            $postdata['user_id']=CRUDBooster::myID();
-
+           return $postdata;
 	    }
 
 	    /* 
@@ -336,7 +343,126 @@
 
 
 
-	    //By the way, you can still create your own method in here... :) 
+	    //By the way, you can still create your own method in here... :)
+        public function getAdd()
+        {
+            //Create an Auth
+            if (!CRUDBooster::isCreate() && $this->global_privilege == FALSE || $this->button_add == FALSE) {
+                CRUDBooster::redirect(CRUDBooster::adminPath(), trans("crudbooster.denied_access"));
+            }
+
+            $data = [];
+            $data['page_title'] = 'បញ្ចូលទិន្និន័យ';
+
+            $data['categories'] = DB::table('categories')->get();
+            $data['tags'] = DB::table('tags')->get();
+
+            //Please use cbView method instead view method from laravel
+            $this->cbView('backend.posts.create', $data);
+        }
+
+        // (function) Save Post
+        public function postAddSave()
+        {
+            $postdatas = $this->hook_before_add($postdata);
+            foreach ($postdatas as $uid) {
+               $user_id = $uid;
+            }
+            $images = CRUDBooster::uploadFile('images', false, '', '', 'post_photo');
+            DB::table('articles')->insert([
+                'title_kh' => Input::get('title_kh'),
+                'title_en' => Input::get('title_en'),
+                'article_kh' => Input::get('article_kh'),
+                'article_en' => Input::get('article_en'),
+                'description_kh' => Input::get('description_kh'),
+                'description_en' => Input::get('description_en'),
+                'active' => Input::get('active'),
+                'categories_id' => Input::get('categories_id'),
+                'user_id'      =>  $user_id,
+                'images' => $images
+            ]);
+
+
+            $last_id = DB::table('articles')->latest('id')->first();
+
+            $tags = $_POST['tags'];
+
+            foreach ($tags as $tag) {
+                DB::table("post_tags")->insert([
+                    'tag_id' => $tag,
+                    'article_id' => $last_id->id,
+                ]);
+            }
+
+
+            CRUDBooster::redirect(CRUDBooster::mainpath(), trans("crudbooster.alert_add_data_success"), 'success');
+        }
+
+        public function getEdit($id)
+        {
+            //Create an Auth
+            if (!CRUDBooster::isUpdate() && $this->global_privilege == FALSE || $this->button_edit == FALSE) {
+                CRUDBooster::redirect(CRUDBooster::adminPath(), trans("crudbooster.denied_access"));
+            }
+
+            $data = [];
+            $data['page_title'] = 'Edit Data';
+            $data['row'] = DB::table('articles')->where('id', $id)->first();
+            $data['categories'] = DB::table('categories')->get();
+            $data['tags'] = DB::table('tags')->get();
+
+            //Please use cbView method instead view method from laravel
+            $this->cbView('backend.posts.edit', $data);
+        }
+
+
+        // (function) Edit Post
+        public function postEditSave($id)
+        {
+            $postdatas = $this->hook_before_edit($postdata,$id);
+            foreach ($postdatas as $uid) {
+                $user_id = $uid;
+            }
+
+            DB::table('articles')->where('id', $id)->update([
+                'title_kh' => Input::get('title_kh'),
+                'title_en' => Input::get('title_en'),
+                'article_kh' => Input::get('article_kh'),
+                'article_en' => Input::get('article_en'),
+                'description_kh' => Input::get('description_kh'),
+                'description_en' => Input::get('description_en'),
+                'active' => Input::get('active'),
+                'categories_id' => Input::get('categories_id'),
+                'user_id'      =>  $user_id
+            ]);
+            if (Request::hasFile('images')) {
+                $images = CRUDBooster::uploadFile('images', false, '', '', 'post_photo');
+                DB::table('articles')->where('id', $id)->update([
+                    'images' => $images
+                ]);
+            }
+
+            DB::table("post_tags")->where('article_id', $id)->delete();
+
+            $tags = $_POST['tags'];
+            foreach ($tags as $tag) {
+                DB::table("post_tags")->insert([
+                    'tag_id' => $tag,
+                    'article_id' => $id,
+                ]);
+            }
+
+            CRUDBooster::redirect(CRUDBooster::mainpath(), trans("crudbooster.alert_update_data_success"), 'success');
+        }
+
+
+
+	public function getSetStatus($status,$id) {
+   		DB::table('articles')->where('id',$id)->update(['active'=>$status]);
+   
+   	//This will redirect back and gives a message
+   		CRUDBooster::redirect($_SERVER['HTTP_REFERER'],"The status product has been updated !","info");
+	}
 
 
 	}
