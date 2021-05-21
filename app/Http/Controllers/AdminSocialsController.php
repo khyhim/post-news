@@ -5,12 +5,12 @@
 	use DB;
 	use CRUDBooster;
 
-	class AdminCategoriesController extends \crocodicstudio\crudbooster\controllers\CBController {
+	class AdminSocialsController extends \crocodicstudio\crudbooster\controllers\CBController {
 
 	    public function cbInit() {
 
 			# START CONFIGURATION DO NOT REMOVE THIS LINE
-			$this->title_field = "title_kh";
+			$this->title_field = "title";
 			$this->limit = "20";
 			$this->orderby = "id,desc";
 			$this->global_privilege = false;
@@ -25,28 +25,29 @@
 			$this->button_filter = true;
 			$this->button_import = false;
 			$this->button_export = false;
-			$this->table = "categories";
+			$this->table = "socials";
 			# END CONFIGURATION DO NOT REMOVE THIS LINE
 
 			# START COLUMNS DO NOT REMOVE THIS LINE
 			$this->col = [];
-			$this->col[] = ["label"=>"Title Kh","name"=>"ctitle_kh"];
-			$this->col[] = ["label"=>"Title En","name"=>"ctitle_en"];
-			$this->col[] = ["label"=>"Order Level","name"=>"order_level"];
+			$this->col[] = ["label"=>"Title","name"=>"title"];
+			$this->col[] = ["label"=>"Image","name"=>"image","image"=>true];
+			$this->col[] = ["label"=>"Link","name"=>"link"];
 			# END COLUMNS DO NOT REMOVE THIS LINE
 
 			# START FORM DO NOT REMOVE THIS LINE
 			$this->form = [];
-			$this->form[] = ['label'=>'Title Kh','name'=>'ctitle_kh','type'=>'text','width'=>'col-sm-10'];
-			$this->form[] = ['label'=>'Title En','name'=>'ctitle_en','type'=>'text','width'=>'col-sm-10'];
-			$this->form[] = ['label'=>'Order Level','name'=>'order_level','type'=>'select','validation'=>'required|integer','width'=>'col-sm-10','dataenum'=>'0;1;2'];
+			$this->form[] = ['label'=>'Title','name'=>'title','type'=>'text','width'=>'col-sm-10','placeholder'=>'You can only enter the letter only'];
+			$this->form[] = ['label'=>'Image','name'=>'image','type'=>'upload','width'=>'col-sm-10','help'=>'File types support : JPG, JPEG, PNG, GIF, BMP'];
+			$this->form[] = ['label'=>'Link','name'=>'link','type'=>'text','width'=>'col-sm-10','placeholder'=>'Please enter a valid URL'];
 			# END FORM DO NOT REMOVE THIS LINE
 
 			# OLD START FORM
 			//$this->form = [];
-			//$this->form[] = ["label"=>"Title Kh","name"=>"title_kh","type"=>"text","required"=>TRUE,"validation"=>"required|min:1|max:255"];
-			//$this->form[] = ["label"=>"Title En","name"=>"title_en","type"=>"text","required"=>TRUE,"validation"=>"required|min:1|max:255"];
-			//$this->form[] = ["label"=>"Order Level","name"=>"order_level","type"=>"number","required"=>TRUE,"validation"=>"required|integer|min:0"];
+			//$this->form[] = ["label"=>"Title","name"=>"title","type"=>"text","required"=>TRUE,"validation"=>"required|string|min:3|max:70","placeholder"=>"You can only enter the letter only"];
+			//$this->form[] = ["label"=>"Image","name"=>"image","type"=>"upload","required"=>TRUE,"validation"=>"required|image|max:3000","help"=>"File types support : JPG, JPEG, PNG, GIF, BMP"];
+			//$this->form[] = ["label"=>"Link","name"=>"link","type"=>"text","required"=>TRUE,"validation"=>"required|url","placeholder"=>"Please enter a valid URL"];
+			//$this->form[] = ["label"=>"Status","name"=>"status","type"=>"text","required"=>TRUE,"validation"=>"required|min:1|max:255"];
 			# OLD END FORM
 
 			/* 

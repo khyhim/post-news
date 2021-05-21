@@ -30,11 +30,13 @@
                 <div class="col-md-5 header_socail">
                     <nav class="right-topbar navbar navbar-expand px-0">
                         <ul class="navbar-nav ml-md-auto mr-md-0 mx-auto">
-                            <li class="nav-item"><a target="_blank" class="imgsocial" href="https://www.facebook.com"><img class="fbright" src="{{url('front/images/icon/fb.png')}}"></a></li>
-                            <li class="nav-item"><a target="_blank" class="imgsocial" href="https://www.facebook.com"><img src="{{url('front/images/icon/insta.png')}}"></a></li>
-                            <li class="nav-item"><a target="_blank" class="imgsocial" href="https://twitter.com/"><img src="{{url('front/images/icon/twiter.png')}}"></a></li>
-                            <li class="nav-item"><a target="_blank" class="imgsocial" href="https://www.youtube.com/watch?v=60hFQFndVQg"><img src="{{url('front/images/icon/youtube.png')}}"></a></li>
-                         
+                            
+          @foreach ($socialssssss as $index=>$socials)
+          <li class="nav-item"><a target="_blank" class="imgsocial" href="{{$socials->link}}"><img class="fbright" src="{{asset('')}}/{{$socials->image}}"></a></li>
+                   
+          @endforeach
+         
+                                                  
                             <li class="nav-item"><a class="dropdown-item" href="{{ route('change_lang', ['lang' => 'kh']) }}">KH</a></li>
                             <li class="nav-item border_nav">|</li>
                             <li class="nav-item"><a class="dropdown-item" href="{{ route('change_lang', ['lang' => 'en']) }}">EN</a>  </li>
@@ -49,7 +51,7 @@
 
     <div class="logo">
         <a href="/">
-          <img class="lozad" data-src="{{url('logo.png')}}" src="{{url('logo.png')}}" data-loaded="true">
+          <img class="lozad" alt="{{$generalSitting->title}}" data-src="{{asset('')}}/{{$generalSitting->logo}}" src="{{asset('')}}/{{$generalSitting->logo}}" data-loaded="true">
         </a>
       </div>  
 
@@ -90,10 +92,10 @@
 
                     @if(Session::has('lang')) 
                       @if($lang == 'kh') 
-                          {{$categories->title_kh}}
-                      @else {{$categories->title_en}} 
+                          {{$categories->ctitle_kh}}
+                      @else {{$categories->ctitle_en}} 
                       @endif @else 
-                      {{$categories->title_kh}} 
+                      {{$categories->ctitle_kh}} 
                       @endif
 
                     </a>
@@ -149,12 +151,12 @@
   <div class="container">
     <div class="row">
       <div class="col-md-4 copyright">
-        <!-- <img class="lozad footer-logo" data-src=""> -->
-        <div class="title">NewsFeed</div>
-        <p class="small">@lang('header.capyrights')</p>
+       <img class="lozad footer-logo" alt="{{$generalSitting->title}}" data-src="{{asset('')}}/{{$generalSitting->logo}}" src="{{asset('')}}/{{$generalSitting->logo}}"> 
+        
+        <p class="small"> {{$generalSitting->copyrigth}}</p>
         <p class="small">
           <strong>@lang('header.address')</strong><br/>
-          @lang('header.cambodianatural')
+          {{$generalSitting->address}}
         </p>
       </div>
 
@@ -162,7 +164,7 @@
                 <div class="title">@lang('header.aboutus')</div>
         <p>
         
-        @lang('header.document')
+          {{$generalSitting->about}}
         </p>   
         <div class="clear"></div>
                   
@@ -172,16 +174,18 @@
       <div class="col-md-3 socail copyright">
         <div class="title"> @lang('header.socialmedia')</div>
         <div class="list-socail">
-          <a href="https://www.facebook.com" target="_blank"><img src="{{url('front/images/icon/fb.png')}}"></a>
-          <a href="https://www.instagram.com/?hl=en" target="_blank"><img src="{{url('front/images/icon/insta.png')}}"></a>
-          <a href="https://twitter.com/" target="_blank"><img src="{{url('front/images/icon/twiter.png')}}"></a>
-          <a href="https://www.youtube.com/watch?v=60hFQFndVQg" target="_blank"><img src="{{url('front/images/icon/youtube.png')}}"></a>
+          @foreach ($socialssssss as $index=>$socials)
+          <a href="{{$socials->link}}" target="_blank"><img src="{{asset('')}}/{{$socials->image}}"></a>
+
+                   
+          @endforeach
+
         </div>
 
         <p class="small" style="margin-top:15px;">
           <strong>@lang('header.contact')</strong> <br />
-          <a href="mailto:info@NewsFeed.com">info@NewsFeed.com</a> <br />
-          202-555-0167
+          <a href="mailto:info@NewsFeed.com">{{$generalSitting->email}}</a> <br />
+          {{$generalSitting->phone}}
         </p>
 
       </div>

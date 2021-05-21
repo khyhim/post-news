@@ -5,48 +5,60 @@
 	use DB;
 	use CRUDBooster;
 
-	class AdminCategoriesController extends \crocodicstudio\crudbooster\controllers\CBController {
+	class AdminGeneralSittingsController extends \crocodicstudio\crudbooster\controllers\CBController {
 
 	    public function cbInit() {
 
 			# START CONFIGURATION DO NOT REMOVE THIS LINE
-			$this->title_field = "title_kh";
+			$this->title_field = "title";
 			$this->limit = "20";
 			$this->orderby = "id,desc";
 			$this->global_privilege = false;
 			$this->button_table_action = true;
 			$this->button_bulk_action = true;
 			$this->button_action_style = "button_icon";
-			$this->button_add = true;
+			$this->button_add = false;
 			$this->button_edit = true;
-			$this->button_delete = true;
+			$this->button_delete = false;
 			$this->button_detail = true;
-			$this->button_show = true;
-			$this->button_filter = true;
+			$this->button_show = false;
+			$this->button_filter = false;
 			$this->button_import = false;
 			$this->button_export = false;
-			$this->table = "categories";
+			$this->table = "general_sittings";
 			# END CONFIGURATION DO NOT REMOVE THIS LINE
 
 			# START COLUMNS DO NOT REMOVE THIS LINE
 			$this->col = [];
-			$this->col[] = ["label"=>"Title Kh","name"=>"ctitle_kh"];
-			$this->col[] = ["label"=>"Title En","name"=>"ctitle_en"];
-			$this->col[] = ["label"=>"Order Level","name"=>"order_level"];
+			$this->col[] = ["label"=>"Logo","name"=>"logo","image"=>true];
+			$this->col[] = ["label"=>"Title","name"=>"title"];
+			$this->col[] = ["label"=>"Phone","name"=>"phone"];
+			$this->col[] = ["label"=>"Email","name"=>"email"];
+			$this->col[] = ["label"=>"Address","name"=>"address"];
+			$this->col[] = ["label"=>"Copyrigth","name"=>"copyrigth"];
+			$this->col[] = ["label"=>"About","name"=>"about"];
 			# END COLUMNS DO NOT REMOVE THIS LINE
 
 			# START FORM DO NOT REMOVE THIS LINE
 			$this->form = [];
-			$this->form[] = ['label'=>'Title Kh','name'=>'ctitle_kh','type'=>'text','width'=>'col-sm-10'];
-			$this->form[] = ['label'=>'Title En','name'=>'ctitle_en','type'=>'text','width'=>'col-sm-10'];
-			$this->form[] = ['label'=>'Order Level','name'=>'order_level','type'=>'select','validation'=>'required|integer','width'=>'col-sm-10','dataenum'=>'0;1;2'];
+			$this->form[] = ['label'=>'Logo','name'=>'logo','type'=>'upload','width'=>'col-sm-10'];
+			$this->form[] = ['label'=>'Title','name'=>'title','type'=>'text','width'=>'col-sm-10','placeholder'=>'You can only enter the letter only'];
+			$this->form[] = ['label'=>'Phone','name'=>'phone','type'=>'text','width'=>'col-sm-10','placeholder'=>'You can only enter the number only'];
+			$this->form[] = ['label'=>'Email','name'=>'email','type'=>'text','width'=>'col-sm-10','placeholder'=>'Please enter a valid email address'];
+			$this->form[] = ['label'=>'Address','name'=>'address','type'=>'textarea','width'=>'col-sm-10'];
+			$this->form[] = ['label'=>'Copyrigth','name'=>'copyrigth','type'=>'textarea','width'=>'col-sm-10'];
+			$this->form[] = ['label'=>'About','name'=>'about','type'=>'textarea','width'=>'col-sm-10'];
 			# END FORM DO NOT REMOVE THIS LINE
 
 			# OLD START FORM
 			//$this->form = [];
-			//$this->form[] = ["label"=>"Title Kh","name"=>"title_kh","type"=>"text","required"=>TRUE,"validation"=>"required|min:1|max:255"];
-			//$this->form[] = ["label"=>"Title En","name"=>"title_en","type"=>"text","required"=>TRUE,"validation"=>"required|min:1|max:255"];
-			//$this->form[] = ["label"=>"Order Level","name"=>"order_level","type"=>"number","required"=>TRUE,"validation"=>"required|integer|min:0"];
+			//$this->form[] = ['label'=>'Logo','name'=>'logo','type'=>'upload','width'=>'col-sm-10'];
+			//$this->form[] = ['label'=>'Title','name'=>'title','type'=>'text','width'=>'col-sm-10','placeholder'=>'You can only enter the letter only'];
+			//$this->form[] = ['label'=>'Phone','name'=>'phone','type'=>'number','width'=>'col-sm-10','placeholder'=>'You can only enter the number only'];
+			//$this->form[] = ['label'=>'Email','name'=>'email','type'=>'email','width'=>'col-sm-10','placeholder'=>'Please enter a valid email address'];
+			//$this->form[] = ['label'=>'Address','name'=>'address','type'=>'text','width'=>'col-sm-10'];
+			//$this->form[] = ['label'=>'Copyrigth','name'=>'copyrigth','type'=>'text','width'=>'col-sm-10'];
+			//$this->form[] = ['label'=>'About','name'=>'about','type'=>'textarea','width'=>'col-sm-10'];
 			# OLD END FORM
 
 			/* 

@@ -9,6 +9,8 @@ use App\Categories;
 use App\Tag;
 use App\Article;
 use App\AdsPost;
+use App\Social;
+use App\GeneralSitting;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -22,13 +24,12 @@ class AppServiceProvider extends ServiceProvider
         Schema::defaultStringLength(191);
 
        
-        View::share('articleview', Article::orderBy('id', 'DESC')->paginate(8));
+        View::share('articleview', Article::orderBy('view', 'DESC')->paginate(8));
         View::share('article', Article::orderBy('id', 'DESC')->paginate(8));
-        View::share('categorysssss', Categories::orderBy('id', 'DESC')->where('order_level',1)->get());
+        View::share('categorysssss', Categories::orderBy('id', 'ASC')->where('order_level',1)->get());
         View::share('tagssss', Tag::orderBy('id', 'DESC')->where('order_level',1)->get());
-
-      
-      
+       View::share('socialssssss', Social::orderBy('id', 'ASC')->where('status',1)->get());
+       View::share('generalSitting', GeneralSitting::first());
         View::share('adspressbarbottom', AdsPost::orderBy('id', 'desc')->where('adsposition_id',6)->get());
         View::share('adspressbarcenter', AdsPost::orderBy('id', 'desc')->where('adsposition_id',5)->get());
         View::share('adspressbartop', AdsPost::orderBy('id', 'desc')->where('adsposition_id',4)->get());

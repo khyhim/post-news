@@ -29,18 +29,20 @@ class FrontController extends Controller
       $techleft = Article::orderBy('id', 'desc')->where('categories_id',2)->paginate(1);
       $tech = Article::orderBy('id', 'desc')->where('categories_id',2)->paginate(8);
 
-        $adstop = AdsPost::orderBy('id', 'desc')->where('adsposition_id',1)->get();
-        $adsvideo = AdsPost::orderBy('id', 'desc')->where('adsposition_id',2)->get();
+      $adstop = AdsPost::orderBy('id', 'desc')->where('adsposition_id',1)->get();
+      $adsvideo = AdsPost::orderBy('id', 'desc')->where('adsposition_id',2)->get();
 
-        $article = Article::orderBy('id', 'desc')->paginate(8);
+      $article = Article::orderBy('id', 'desc')->paginate(8);
 
-        $view = Article::orderBy('view', 'desc')->paginate(3);
+      $view = Article::orderBy('view', 'desc')->paginate(3);
 
-        return view('index')->with('entertainment',$entertainment)
-      ->with('adstop',$adstop)->with('adsvideo',$adsvideo)->with('view',$view)->with('article',$article)->with('entertainmentleft',$entertainmentleft)
-      ->with('categorylast',$categorylast)->with('socialseft',$socialseft)->with('social',$social)
-      ->with('sportleft',$sportleft)->with('sport',$sport)->with('techleft',$techleft)->with('tech',$tech)
-      ;
+      $frontPost =  DB::table('articles')
+      ->select('articles.*','categories.*')
+      ->join("categories", "categories.id","=","articles.categories_id")
+      ->orderBy('articles.id','DESC')->paginate(4);
+     
+        return view('index', compact('frontPost','social','entertainmentleft','tech','techleft','sport','adstop','socialseft','adsvideo','article','view','categorylast','entertainment'));
+     
     }
 
 

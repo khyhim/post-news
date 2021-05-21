@@ -5,14 +5,13 @@
         <div class="container" id="banner">
             <div id="features_post">
                 <div class="row">
-                    @foreach ($socialseft as $socialsefts)
+
+
+                    @foreach ($frontPost as $socialsefts)
                         <div class="col-sm-7 item">
                             <a class="get" rel="{{ $socialsefts->id }}" href="{{route('pressrelease',$socialsefts->id)}}?pressrelease={{$socialsefts->categories_id}}">
 
                                 <div class="img lozad" data-background-image="{{asset('')}}/{{$socialsefts->images}}" data-loaded="true" style="background-image: url('{{asset('')}}/{{$socialsefts->images}}');"></div>
-
-                                <div class="bg">
-                                </div>
                                 <div class="mean-decription">
                                     <div class="decription">
                                         <div class="title">
@@ -42,164 +41,34 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="caregory" style="background:#F9A62B;">
-                                    @lang('header.life')
-                                    <div class="corner" style="border-color: transparent transparent transparent
-                #F9A62B;">
-                                    </div>
+                                <div class="caregory" 
+                                    @if($socialsefts->categories_id == '1')
+                                        style="background:#FA5480;" 
+                                    @elseif($socialsefts->categories_id == '2')
+                                        style="background:#38C378;" 
+                                        @elseif($socialsefts->categories_id == '3')
+                                        style="background:#F9A62B;" 
+                                        @elseif($socialsefts->categories_id == '4')
+                                        style="background:#4390F8;" 
+                                    @else
+                                        
+                                    @endif>
+                                    @if(Session::has('lang'))
+                                                @if($lang == 'kh')
+                                                    {{str_limit($socialsefts->ctitle_kh, 40)}}
+                                                @else
+                                                    {{str_limit($socialsefts->ctitle_en, 40)}}
+                                                @endif @else
+                                                {{str_limit($socialsefts->ctitle_kh, 40)}}
+                                            @endif
+                                   
                                 </div>
                             </a>
                         </div>
                     @endforeach
 
 
-                    @foreach ($techleft as $techlefts)
-                        <div class="col-sm-5 item">
-                            <a class="get" rel="{{ $techlefts->id }}" href="{{route('pressrelease',$techlefts->id)}}?pressrelease={{$techlefts->categories_id}}">
-
-                                <div class="img lozad" data-background-image="{{asset('')}}/{{$techlefts->images}}" data-loaded="true" style="background-image: url('{{asset('')}}/{{$techlefts->images}}');"></div>
-
-                                <div class="bg">
-                                </div>
-                                <div class="mean-decription">
-                                    <div class="decription">
-                                        @if(Session::has('lang'))
-                                            @if($lang == 'kh')
-                                                <div class="title">
-                                                    {{str_limit($techlefts->title_kh, 40)}}
-                                                </div>
-                                                <div class="content">
-                                                    {{str_limit($techlefts->description_kh, 60)}}
-                                                </div>
-                                            @else
-                                                <div class="title">
-                                                    {{str_limit($techlefts->title_en, 40)}}
-                                                </div>
-                                                <div class="content">
-                                                    {{str_limit($techlefts->description_en, 60)}}
-                                                </div>
-                                            @endif @else
-                                            <div class="title">
-                                                {{str_limit($techlefts->title_kh, 40)}}
-                                            </div>
-                                            <div class="content">
-                                                {{str_limit($techlefts->description_kh, 60)}}
-                                            </div>
-                                        @endif
-
-
-                                        <div class="date">
-                                            <div class="pub-date" date="{{ $techlefts->created_at->format('l j F Y H:i:s')}}" style="float:left;">{{ $techlefts->created_at->format('d/m/Y')}}</div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="caregory" style="background:#38C378;">
-                                    @lang('header.technology')
-                                    <div class="corner" style="border-color: transparent transparent transparent
-                #38C378;">
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                    @endforeach
-
-                    @foreach ($entertainmentleft as $entertainmentsleft)
-                        <div class="col-sm-7 item">
-                            <a class="get" rel="{{ $entertainmentsleft->id }}" href="{{route('pressrelease',$entertainmentsleft->id)}}?pressrelease={{$entertainmentsleft->categories_id}}">
-
-                                <div class="img lozad" data-background-image="{{asset('')}}/{{$entertainmentsleft->images}}" data-loaded="true" style="background-image: url('{{asset('')}}/{{$entertainmentsleft->images}}');"></div>
-
-                                <div class="bg">
-                                </div>
-                                <div class="mean-decription">
-                                    <div class="decription">
-                                        @if(Session::has('lang'))
-                                            @if($lang == 'kh')
-                                                <div class="title">
-                                                    {{str_limit($entertainmentsleft->title_kh, 40)}}
-                                                </div>
-                                                <div class="content">
-                                                    {{str_limit($entertainmentsleft->description_kh, 60)}}
-                                                </div>
-                                            @else
-                                                <div class="title">
-                                                    {{str_limit($entertainmentsleft->title_en, 40)}}
-                                                </div>
-                                                <div class="content">
-                                                    {{str_limit($entertainmentsleft->description_en, 60)}}
-                                                </div>
-                                            @endif @else
-                                            <div class="title">
-                                                {{str_limit($entertainmentsleft->title_kh, 40)}}
-                                            </div>
-                                            <div class="content">
-                                                {{str_limit($entertainmentsleft->description_kh, 60)}}
-                                            </div>
-                                        @endif
-
-
-                                        <div class="date">
-{{--                                            <div class="pub-date" date="{{ $entertainmentsleft->created_at->format('l j F Y H:i:s')}}" style="float:left;">{{ $entertainmentsleft->created_at->format('d/m/Y')}}</div>--}}
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="caregory" style="background:#FA5480;">
-                                    @lang('header.entertainment')
-                                    <div class="corner" style="border-color: transparent transparent transparent
-                #FA5480;">
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                    @endforeach
-                    @foreach ($sportleft as $sportlefts)
-                        <div class="col-sm-5 item">
-                            <a class="get" rel="{{ $sportlefts->id }}" href="{{route('pressrelease',$sportlefts->id)}}?pressrelease={{$sportlefts->categories_id}}">
-
-                                <div class="img lozad" data-background-image="{{asset('')}}/{{$sportlefts->images}}" data-loaded="true" style="background-image: url('{{asset('')}}/{{$sportlefts->images}}');"></div>
-
-                                <div class="bg">
-                                </div>
-                                <div class="mean-decription">
-                                    <div class="decription">
-                                        @if(Session::has('lang'))
-                                            @if($lang == 'kh')
-                                                <div class="title">
-                                                    {{str_limit($sportlefts->title_kh, 40)}}
-                                                </div>
-                                                <div class="content">
-                                                    {{str_limit($sportlefts->description_kh, 60)}}
-                                                </div>
-                                            @else
-                                                <div class="title">
-                                                    {{str_limit($sportlefts->title_en, 40)}}
-                                                </div>
-                                                <div class="content">
-                                                    {{str_limit($sportlefts->description_en, 60)}}
-                                                </div>
-                                            @endif @else
-                                            <div class="title">
-                                                {{str_limit($sportlefts->title_kh, 40)}}
-                                            </div>
-                                            <div class="content">
-                                                {{str_limit($sportlefts->description_kh, 60)}}
-                                            </div>
-                                        @endif
-
-                                        <div class="date">
-                                            <div class="pub-date"  date="{{ $sportlefts->created_at->format('l j F Y H:i:s')}}" style="float:left;">{{ $sportlefts->created_at->format('d/m/Y')}}</div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="caregory" style="background:#4390F8;">
-                                    @lang('header.sport')
-                                    <div class="corner" style="border-color: transparent transparent transparent
-                #4390F8;">
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                    @endforeach
+                
                 </div>
             </div>
             <div id="top_right_ads">
