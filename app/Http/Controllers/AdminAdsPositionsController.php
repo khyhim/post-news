@@ -32,6 +32,7 @@
 			$this->col = [];
 			$this->col[] = ["label"=>"Id","name"=>"id"];
 			$this->col[] = ["label"=>"Position","name"=>"position"];
+			
 			# END COLUMNS DO NOT REMOVE THIS LINE
 
 			# START FORM DO NOT REMOVE THIS LINE

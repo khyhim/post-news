@@ -56,7 +56,7 @@
       </div>  
 
        <div class="ads web ads_items" id="ad_zone_01" zone="7">
-              <ins style="text-decoration: none;"><a href="{{$adsheadline->url}}" target="_blank"><img src="{{asset('')}}/{{$adsheadline->images}}" width="728" height="90" ></a><div id="beacon_2786146acf" style="position: absolute; left: 0px; top: 0px; visibility: hidden;">
+              <ins style="text-decoration: none;"><a href="{{$adsheadline->url}}" target="_blank"><img src="{{asset('')}}/{{$adsheadline->images }}" width="728" height="90" ></a><div id="beacon_2786146acf" style="position: absolute; left: 0px; top: 0px; visibility: hidden;">
                </div></ins>
               </div>
           </div>

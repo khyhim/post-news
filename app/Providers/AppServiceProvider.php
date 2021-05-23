@@ -23,14 +23,14 @@ class AppServiceProvider extends ServiceProvider
     {
         Schema::defaultStringLength(191);
 
-        View::share('adsbottom', AdsPost::orderBy('id', 'desc')->where('adsposition_id',8)->get());
+        View::share('adsbottom', AdsPost::orderBy('id', 'desc')->where('adsposition_id',8)->where('active',1)->get());
 
-        View::share('adscenter',AdsPost::orderBy('id', 'desc')->where('adsposition_id',6)->get());
+        View::share('adscenter',AdsPost::orderBy('id', 'desc')->where('adsposition_id',6)->where('active',1)->get());
 
-        View::share('adstop',AdsPost::orderBy('id')->where('adsposition_id',7)->get());
-        View::share('adsTagHeadLine',AdsPost::orderBy('id', 'desc')->where('adsposition_id',12)->first());
+        View::share('adstop',AdsPost::orderBy('id')->where('adsposition_id',7)->where('active',1)->get());
+        View::share('adsTagHeadLine',AdsPost::orderBy('id', 'desc')->where('adsposition_id',12)->where('active',1)->first());
 
-        View::share('adsheadline',AdsPost::where('adsposition_id',1)->first());
+        View::share('adsheadline',AdsPost::where('adsposition_id',1)->where('active',1)->first());
         View::share('articleview', Article::orderBy('view', 'DESC')->paginate(8));
         View::share('article', Article::orderBy('id', 'DESC')->paginate(8));
         View::share('categorysssss', Categories::orderBy('id', 'ASC')->where('order_level',1)->get());

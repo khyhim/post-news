@@ -30,9 +30,11 @@
 
 			# START COLUMNS DO NOT REMOVE THIS LINE
 			$this->col = [];
-			$this->col[] = ["label"=>"Adsposition Id","name"=>"adsposition_id"];
+			$this->col[] = ["label"=>"Adsposition Id","name"=>"adsposition_id","join"=>"ads_positions,position"];
 			$this->col[] = ["label"=>"Images","name"=>"images","image"=>true,"width"=>"100"];
 			$this->col[] = ["label"=>"Url","name"=>"url"];
+			$this->col[] = ["label"=>"Active","name"=>"active","width"  => "10%",
+			"callback_php"=>'number_format($row->active)== 1 ? "ON" : "OFF"'];
 			# END COLUMNS DO NOT REMOVE THIS LINE
 
 			# START FORM DO NOT REMOVE THIS LINE
@@ -76,7 +78,9 @@
 	        | 
 	        */
 	        $this->addaction = array();
-
+			$this->addaction[] = ['label'=>'Set Active','url'=>CRUDBooster::mainpath('set-status/0/[id]'),'icon'=>'fa fa-check','color'=>'success','showIf'=>"[active] == '1'"];
+			$this->addaction[] = ['label'=>'Set Pending','url'=>CRUDBooster::mainpath('set-status/1/[id]'),'icon'=>'fa fa-ban','color'=>'warning','showIf'=>"[active] == '0'", 'confirmation' => true];
+			
 
 	        /* 
 	        | ---------------------------------------------------------------------- 
@@ -321,7 +325,12 @@
 	    }
 
 
-
+		public function getSetStatus($status,$id) {
+			DB::table('ads_posts')->where('id',$id)->update(['active'=>$status]);
+	
+		//This will redirect back and gives a message
+			CRUDBooster::redirect($_SERVER['HTTP_REFERER'],"The status product has been updated !","info");
+	 }
 	    //By the way, you can still create your own method in here... :) 
 
 
