@@ -31,7 +31,7 @@
 			# START COLUMNS DO NOT REMOVE THIS LINE
 			$this->col = [];
 			$this->col[] = ["label"=>"Adsposition Id","name"=>"adsposition_id"];
-			$this->col[] = ["label"=>"Images","name"=>"images","image"=>true];
+			$this->col[] = ["label"=>"Images","name"=>"images","image"=>true,"width"=>"100"];
 			$this->col[] = ["label"=>"Url","name"=>"url"];
 			# END COLUMNS DO NOT REMOVE THIS LINE
 
@@ -44,7 +44,7 @@
 
 			# OLD START FORM
 			//$this->form = [];
-			//$this->form[] = ['label'=>'Adsposition Id','name'=>'adsposition_id','type'=>'select2','validation'=>'required','width'=>'col-sm-10','datatable'=>'ads_positions,id'];
+			//$this->form[] = ['label'=>'Adsposition Id','name'=>'adsposition_id','type'=>'select2','validation'=>'required','width'=>'col-sm-10','datatable'=>'ads_positions,position'];
 			//$this->form[] = ['label'=>'Images','name'=>'images','type'=>'upload','width'=>'col-sm-10'];
 			//$this->form[] = ['label'=>'Url','name'=>'url','type'=>'text','width'=>'col-sm-10','placeholder'=>'Please enter a valid URL'];
 			# OLD END FORM

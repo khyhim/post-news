@@ -13,17 +13,15 @@
 
         <ul class="nav nav-tabs home-tabs entertainment" role="tablist" style="border-color:#6f313a">
 
-          @foreach ($adstoppress as $adstoppresss)
                     <li role="presentation" class="sponsor">
-            <a target="_blank" href="{{$adstoppresss->url}}" title="Opens in a new window">
+            <a target="_blank" href="{{$adsTagHeadLine->url}}" title="Opens in a new window">
               <div class="sponsor_by">
               @lang('header.sponsor_by')
               </div>
 
-              <img class="sponsor_img lozad" target="_blank" src="{{asset('')}}/{{$adstoppresss->images}}">
+              <img class="sponsor_img lozad" target="_blank" src="{{asset('')}}/{{$adsTagHeadLine->images}}">
             </a>
           </li>
-          @endforeach
 
         <li role="presentation" class="switch-view-li">
             <a href="#" class="switch-view" id="grid">
@@ -121,11 +119,7 @@
 
     <div id="ad_zone_02" class="ads_items web" zone="117">
 
- @foreach ($tagtop as $tagtops)
-    <a href="{{$tagtops->url}}" target="_blank">
-    <img class="img lozad" target="_blank" src="{{asset('')}}/{{$tagtops->images}}">
-    </a>
-          @endforeach
+      @include('include.adstop')
 
 
     </div>
@@ -135,11 +129,7 @@
           @include('include.pop-news')
        </div>
     <div id="ad_zone_02" class="ads_items web" zone="117">
-    @foreach ($tagcenter as $tagcenters)
-    <a href="{{$tagcenters->url}}" target="_blank">
-    <img class="img lozad" target="_blank" src="{{asset('')}}/{{$tagcenters->images}}">
-    </a>
-          @endforeach
+      @include('include.adscenter')
     </div>
 
 
@@ -149,11 +139,7 @@
     </div>
     <div id="ad_zone_03" class="ads_items web" zone="117">
 
-    @foreach ($tagbottom as $tagbottoms)
-    <a href="{{$tagbottoms->url}}" target="_blank">
-    <img class="img lozad" target="_blank" src="{{asset('')}}/{{$tagbottoms->images}}">
-    </a>
-          @endforeach
+      @include('include.adsbottom')
      </div>
 
         </div>

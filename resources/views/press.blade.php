@@ -12,17 +12,15 @@
         
         <ul class="nav nav-tabs home-tabs entertainment" role="tablist" style="border-color:#6f313a">
           
-          @foreach ($adstoppress as $adstoppresss)
                     <li role="presentation" class="sponsor">
-            <a target="_blank" href="{{$adstoppresss->url}}" title="Opens in a new window">              
+            <a target="_blank" href="{{$adsTagHeadLine->url}}" title="Opens in a new window">              
               <div class="sponsor_by">
               @lang('header.sponsor_by')
               </div>
               
-              <img class="sponsor_img lozad" target="_blank" src="{{asset('')}}/{{$adstoppresss->images}}">            
+              <img class="sponsor_img lozad" target="_blank" src="{{asset('')}}/{{$adsTagHeadLine->images}}">            
             </a>
           </li>
-          @endforeach
          
           <li role="presentation" class="switch-view-li">
             <a href="#" class="switch-view" id="grid">
@@ -110,13 +108,7 @@
     <div class="single-right-content">
        
     <div id="ad_zone_02" class="ads_items web" zone="117">
-    
- @foreach ($adspressbartop as $adspressbartops)
-    <a href="{{$adspressbartops->url}}" target="_blank">
-    <img class="img lozad" target="_blank" src="{{asset('')}}/{{$adspressbartops->images}}">            
-    </a>
-          @endforeach
-   
+      @include('include.adstop')
    
     </div>
         <!-- Popular news block -->
@@ -125,11 +117,7 @@
         @include('include.pop-news')
       </div>
     <div id="ad_zone_02" class="ads_items web" zone="117">
-    @foreach ($adspressbarcenter as $adspressbarcenters)
-    <a href="{{$adspressbarcenters->url}}" target="_blank">
-    <img class="img lozad" target="_blank" src="{{asset('')}}/{{$adspressbarcenters->images}}">            
-    </a>
-          @endforeach
+      @include('include.adscenter')
     </div>
     
     
@@ -138,12 +126,8 @@
         @include('include.new-news')
       </div>
     <div id="ad_zone_03" class="ads_items web" zone="117">
-    
-    @foreach ($adspressbarbottom as $adspressbarbottoms)
-    <a href="{{$adspressbarbottoms->url}}" target="_blank">
-    <img class="img lozad" target="_blank" src="{{asset('')}}/{{$adspressbarbottoms->images}}">            
-    </a>
-          @endforeach
+      @include('include.adsbottom')
+ 
      </div>    
 
         </div>

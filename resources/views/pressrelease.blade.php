@@ -19,16 +19,14 @@
               <div class="sidebar sidebar-left" style="background: transparent linear-gradient(to bottom, #FFF 0%,  63%,  63%) repeat scroll 0% 0%;"></div>
                 <div class="header post_content">
 
-         @foreach ($adstoppress as $adstoppresss)
               <div class="post-top-bar">
-                 <a href="{{$adstoppresss->url}}" target="_blank" title="Opens in a new window">
+                 <a href="{{$adsTagHeadLine->url}}" target="_blank" title="Opens in a new window">
                     <div class="single sponsor">
                       <div class="sponsor_by" >@lang('header.sponsor_by')</div>
-                      <img class="sponsor_img" target="_blank" src="{{asset('')}}/{{$adstoppresss->images}}">  
+                      <img class="sponsor_img" target="_blank" src="{{asset('')}}/{{$adsTagHeadLine->images}}">  
                     </div>
                  </a>
                </div>
-                 @endforeach               
              <div class="title detail">
                                       
               <p>
@@ -166,11 +164,7 @@
     <div class="single-right-content">
      
     <div id="ad_zone_02" class="ads_items web" zone="117">
-    @foreach ($pressreleasetop as $pressreleasetops)
-          <a  href="{{$pressreleasetops->url}}" target="_blank">
-          <img class="img lozad" target="_blank" src="{{asset('')}}/{{$pressreleasetops->images}}">            
-          </a>
-      @endforeach
+      @include('include.adstop')
    
     </div>
         <!-- Popular news block -->
@@ -180,11 +174,7 @@
     </div>
 
     <div id="ad_zone_02" class="ads_items web" zone="117">
-    @foreach ($pressreleasecenter as $pressreleasecenters)
-          <a  href="{{$pressreleasecenters->url}}" target="_blank">
-          <img class="img lozad" target="_blank" src="{{asset('')}}/{{$pressreleasecenters->images}}">            
-          </a>
-      @endforeach
+      @include('include.adscenter')
     </div>
 
     <div class="posts_item right-hot-news">
@@ -193,11 +183,7 @@
     
     </div>
     <div id="ad_zone_03" class="ads_items web" zone="117">
-    @foreach ($pressreleasebottom as $pressreleasebottoms)
-          <a href="{{$pressreleasebottoms->url}}" target="_blank">
-          <img class="img lozad" target="_blank" src="{{asset('')}}/{{$pressreleasebottoms->images}}">            
-          </a>
-      @endforeach
+      @include('include.adsbottom')
     </div>    
 
         </div>

@@ -29,19 +29,19 @@ class FrontController extends Controller
       $techleft = Article::orderBy('id', 'desc')->where('categories_id',2)->paginate(1);
       $tech = Article::orderBy('id', 'desc')->where('categories_id',2)->paginate(8);
 
-      $adstop = AdsPost::orderBy('id', 'desc')->where('adsposition_id',1)->get();
+      $adstop = AdsPost::orderBy('id', 'desc')->where('adsposition_id',3)->get();
       $adsvideo = AdsPost::orderBy('id', 'desc')->where('adsposition_id',2)->get();
 
       $article = Article::orderBy('id', 'desc')->paginate(8);
 
-      $view = Article::orderBy('view', 'desc')->paginate(3);
+      $viewddd = Article::orderBy('id', 'desc')->where('categories_id',5)->paginate(11);
 
       $frontPost =  DB::table('articles')
       ->select('articles.*','categories.*')
       ->join("categories", "categories.id","=","articles.categories_id")
-      ->orderBy('articles.id','DESC')->paginate(4);
+      ->orderBy('articles.id','DESC')->where('categories_id','!=', 5)->paginate(4);
      
-        return view('index', compact('frontPost','social','entertainmentleft','tech','techleft','sport','adstop','socialseft','adsvideo','article','view','categorylast','entertainment'));
+        return view('index', compact('frontPost','social','entertainmentleft','tech','techleft','sport','adstop','socialseft','adsvideo','article','viewddd','categorylast','entertainment'));
      
     }
 
@@ -73,16 +73,11 @@ class FrontController extends Controller
     $categorylast = Categories::orderBy('id', 'ASC')->where('order_level',2)->get();
    
 
-    $pressreleasetop = AdsPost::orderBy('id')->where('adsposition_id',7)->get();
-    $pressreleasecenter = AdsPost::orderBy('id', 'desc')->where('adsposition_id',8)->get();
-    $pressreleasebottom = AdsPost::orderBy('id', 'desc')->where('adsposition_id',9)->get();
-
     $countview = Article::where('view',$id); 
     $comment = Comment::orderBy('id', 'desc')->where('article_id',$id)->get();
     $relat_posts=Article::orderBy('id', 'DESC')->where('categories_id',$request->pressrelease)->paginate(9);
      return view('pressrelease')->with('pressrelease',$pressrelease)->with('cms_users',$cms_users)
     ->with('categorylast',$categorylast)
-    ->with('pressreleasetop',$pressreleasetop)->with('pressreleasecenter',$pressreleasecenter)->with('pressreleasebottom',$pressreleasebottom)
     ->with('relat_posts',$relat_posts)->with('countview',$countview)->with('comment',$comment)->with('wordCount',$wordCount);
       }
 
@@ -96,15 +91,10 @@ class FrontController extends Controller
               ->where('post_tags.tag_id',$id)->orderBy('articles.id','DESC')->paginate(15);
 
           $tagbanner=TagBanner::orderBy('id', 'desc')->where('tag_id',$id)->where('status',1)->paginate(1);
-          $adstoppress = AdsPost::orderBy('id', 'desc')->where('adsposition_id',3)->get();
-          $tagtop = AdsPost::orderBy('id', 'desc')->where('adsposition_id',10)->get();
-          $tagcenter = AdsPost::orderBy('id', 'desc')->where('adsposition_id',11)->get();
-          $tagbottom = AdsPost::orderBy('id', 'desc')->where('adsposition_id',12)->get();
 
-          return view('tag')->with('adstoppress',$adstoppress)
-              ->with('categorylast',$categorylast)->with('tagcenter',$tagcenter)->with('tagall',$tagall)
-              ->with('tag',$tag)->with('tagbanner',$tagbanner)->with('tagtop',$tagtop)
-              ->with('tagbottom',$tagbottom);
+          return view('tag')
+              ->with('categorylast',$categorylast)->with('tagall',$tagall)
+              ->with('tag',$tag)->with('tagbanner',$tagbanner);
       }
     
     

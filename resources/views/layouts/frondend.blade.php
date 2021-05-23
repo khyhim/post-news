@@ -22,8 +22,8 @@
                 <div class="col-md-7 header_contact">
                     <nav class="left-topbar navbar navbar-expand px-0">
                         <ul class="navbar-nav mx-auto mx-md-0 hide_rsp">
-                            <li class="nav-item"><img class="iconcall" src="{{url('front/images/icon/phone_h.png')}}">+ 202-555-0167</li>
-                            <li class="nav-item"><img class="iconsms" src="{{url('front/images/icon/mail_h.png')}}"></i>fakeemail @info.com</li>
+                            <li class="nav-item"><img class="iconcall" src="{{url('front/images/icon/phone_h.png')}}">+ {{$generalSitting->phone}}</li>
+                            <li class="nav-item"><img class="iconsms" src="{{url('front/images/icon/mail_h.png')}}"></i>{{$generalSitting->email}}</li>
                         </ul>
                     </nav>
                 </div>
@@ -56,7 +56,7 @@
       </div>  
 
        <div class="ads web ads_items" id="ad_zone_01" zone="7">
-              <ins style="text-decoration: none;"><a href="" target="_blank"><img src="{{url('smart.jpg')}}" width="728" height="90" alt="" title="" border="0"></a><div id="beacon_2786146acf" style="position: absolute; left: 0px; top: 0px; visibility: hidden;">
+              <ins style="text-decoration: none;"><a href="{{$adsheadline->url}}" target="_blank"><img src="{{asset('')}}/{{$adsheadline->images}}" width="728" height="90" ></a><div id="beacon_2786146acf" style="position: absolute; left: 0px; top: 0px; visibility: hidden;">
                </div></ins>
               </div>
           </div>

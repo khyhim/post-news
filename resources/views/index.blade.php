@@ -100,11 +100,9 @@
                         <div class="web">
 
                             <div class="row hot-news">
-                                    @foreach ($view as $views)
+                                    @foreach ($viewddd as $views)
 
-                                    @if($views->view > 1)
-
-                                        <div class="col-sm-4 item">
+                                     <div class="col-sm-4 item">
                                             <a class="get" rel="{{ $views->id }}" href="{{route('pressrelease',$views->id)}}">
                                                 <div class="box ratio16_9">
                                                     <div class="ele lozad" data-background-image="{{asset('')}}/{{$views->images}}" data-loaded="true" style="background-image: url('{{asset('')}}/{{$views->images}}');"></div>
@@ -122,41 +120,8 @@
                                                 </div>
                                             </a>
                                         </div>
-                                        @endif
+                                      
                                     @endforeach
-
-
-
-
-
-                                <div class="col-sm-4 item">
-                                </div>
-                            </div>
-                            <div class="clear"></div>
-                            <div class="hot-news-items">
-                                <div class="row">
-                                    @foreach ($article as $articles)
-                                        <div class="col-sm-4 col-md-3 item">
-                                            <a class="get" rel="{{ $articles->id }}" href="{{route('pressrelease',$articles->id)}}?pressrelease={{$articles->categories_id}}">
-
-                                                <div class="box ratio16_9">
-                                                    <div class="ele lozad" data-background-image="{{asset('')}}/{{$articles->images}}" data-loaded="true" style="background-image: url('{{asset('')}}/{{$articles->images}}');"></div>
-                                                </div>
-                                                <div class="title">
-                                                    @if(Session::has('lang'))
-                                                        @if($lang == 'kh')
-                                                            {{str_limit($articles->title_kh, 40)}}
-                                                        @else
-                                                            {{str_limit($articles->title_en, 40)}}
-                                                        @endif @else
-                                                        {{str_limit($articles->title_kh, 40)}}
-                                                    @endif
-                                                </div>
-                                            </a>
-                                        </div>
-                                    @endforeach
-
-                                </div>
                                 <div class="clear"></div>
                             </div>
 
