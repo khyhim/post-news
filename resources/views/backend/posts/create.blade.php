@@ -89,7 +89,7 @@
                             @foreach($categories as $categorie)
                             <div class="checkbox">
                                 <label>
-                                    <input type='radio' name='categories_id' value='{{$categorie->id}}'>{{$categorie->title_kh}}
+                                    <input type='radio' name='categories_id' value='{{$categorie->id}}'>{{$categorie->ctitle_kh}}
                                 </label>
                             </div>
                             @endforeach
@@ -98,7 +98,7 @@
                     </div>
                     <!-- /.box-body -->
                 </div>
-                <div class="box box-success">
+                <div class="box box-success" >
                     <div class="box-header with-border">
                         <h3 class="box-title">ចាប់យកប្រភេទស្លាក</h3>
                     </div>
@@ -109,7 +109,7 @@
                             @foreach($tags as $tag)
                             <div class="checkbox">
                                 <label>
-                                    <input type='checkbox' name='tags[]' value='{{$tag->id}}'><img src="{{asset('')}}{{ $tag->title_kh}}" width="50">
+                                    <input type='checkbox' name='tags[]' value='{{$tag->id}}'>{{ $tag->tag_title_kh}}
                                 </label>
                             </div>
                             @endforeach

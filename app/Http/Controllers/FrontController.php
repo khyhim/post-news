@@ -75,9 +75,26 @@ class FrontController extends Controller
 
     $countview = Article::where('view',$id); 
     $comment = Comment::orderBy('id', 'desc')->where('article_id',$id)->get();
-    $relat_posts=Article::orderBy('id', 'DESC')->where('categories_id',$request->pressrelease)->paginate(9);
+    $relateTag =  DB::table('post_tags')
+->select('post_tags.tag_id','post_tags.article_id','tags.*')
+// ->join('posts','posts.id','=','post_tags.post_id')
+->join('tags','tags.id','=','post_tags.tag_id')
+->where('post_tags.article_id',$id)->get();
+foreach($relateTag as $relateTags){
+   $idTag =$relateTags->tag_id;
+}
+// dd($relateTag);
+$relat_posts =  DB::table('post_tags')
+->select('post_tags.tag_id','post_tags.article_id','tags.id','articles.*')
+->join('articles','articles.id','=','post_tags.article_id')
+->join('tags','tags.id','=','post_tags.tag_id')
+->where('post_tags.tag_id',$idTag)->take(9)->get();
+
+
+
+
      return view('pressrelease')->with('pressrelease',$pressrelease)->with('cms_users',$cms_users)
-    ->with('categorylast',$categorylast)
+    ->with('categorylast',$categorylast)->with('relateTag',$relateTag)
     ->with('relat_posts',$relat_posts)->with('countview',$countview)->with('comment',$comment)->with('wordCount',$wordCount);
       }
 

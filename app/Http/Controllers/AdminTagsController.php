@@ -30,6 +30,8 @@
 
 			# START COLUMNS DO NOT REMOVE THIS LINE
 			$this->col = [];
+			$this->col[] = ["label"=>"Tag Title Kh","name"=>"tag_title_kh",];
+			$this->col[] = ["label"=>" Tag Title Kh","name"=>"tag_title_en"];
 			$this->col[] = ["label"=>"Title Kh","name"=>"title_kh","image"=>true];
 			$this->col[] = ["label"=>"Title En","name"=>"title_en","image"=>true];
 			$this->col[] = ["label"=>"Order Level","name"=>"order_level"];
@@ -37,6 +39,8 @@
 
 			# START FORM DO NOT REMOVE THIS LINE
 			$this->form = [];
+			$this->form[] = ['label'=>'Title Kh','name'=>'tag_title_kh','type'=>'text','width'=>'col-sm-10'];
+			$this->form[] = ['label'=>'Title En','name'=>'tag_title_en','type'=>'text','width'=>'col-sm-10'];
 			$this->form[] = ['label'=>'Title Kh','name'=>'title_kh','type'=>'upload','width'=>'col-sm-10'];
 			$this->form[] = ['label'=>'Title En','name'=>'title_en','type'=>'upload','width'=>'col-sm-10'];
 			$this->form[] = ['label'=>'Order Level','name'=>'order_level','type'=>'select','validation'=>'required|integer','width'=>'col-sm-10','dataenum'=>'0;1'];

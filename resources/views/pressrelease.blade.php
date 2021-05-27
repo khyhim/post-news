@@ -111,9 +111,41 @@
         </div>
 
       <div class="content-footer">
-     
+        <div class="post_tags">
+          <div class="title">
+            @lang('header.relatedarticles')
+              <div class="border"></div>
+            </div>
+          @foreach ($relateTag as $tagds)      
+          <li style="
+            float: left;
+            background-color: #F15B63;
+            padding: 4px 10px;
+            color: #fff;
+            margin-top: 20px;
+            margin-right: 5px;
+        " id="road-home-3">
+               <a href="{{route('tag',['id'=>$tagds->id])}}" class="web menu_road-home-3">
+              
+              @if(Session::has('lang')) 
+            @if($lang == 'kh')                          
+              {{$tagds->tag_title_kh}}
+            @else 
+             {{$tagds->tag_title_en}}
+            @endif @else 
+           
+            {{$tagds->tag_title_kh}}
+            @endif
+               </a>
+                  
+          </li>
+      @endforeach     
+        </div>
         <div class="clear"></div>        
-        <div id="related_posts" class="relative"><div class="news-items">
+        <div id="related_posts" class="relative">
+         
+           
+          <div class="news-items">
       <div class="title">
       @lang('header.relatedarticles')
         <div class="border"></div>

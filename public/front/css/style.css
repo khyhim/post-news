@@ -10925,3 +10925,23 @@ nav#menu .nav>li.more{
     bottom: 16px;
     width: 16%;
 }
+li#road-home-3 {
+    list-style: none;
+}
+li#road-home-3 a{
+    color: #fff;
+    text-transform: uppercase;
+    font-size: 16px;
+    font-weight: 700;
+    text-decoration:none;
+}
+li#road-home-3 a:hover{
+    opacity: 0.5;
+    text-decoration:none;
+}
+.post_tags {
+    display: inline-block;
+    margin: 0 0 42px 0;
+
+    
+}

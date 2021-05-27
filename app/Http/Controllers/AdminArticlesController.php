@@ -385,15 +385,15 @@ $this->addaction[] = ['label'=>'Set Pending','url'=>CRUDBooster::mainpath('set-s
 
             $last_id = DB::table('articles')->latest('id')->first();
 
-            $tags = $_POST['tags'];
-
-            foreach ($tags as $tag) {
-                DB::table("post_tags")->insert([
-                    'tag_id' => $tag,
-                    'article_id' => $last_id->id,
-                ]);
-            }
-
+			$tags = $_POST['tags'];
+			if($last_id !=null &&  $tags !=null){
+				foreach ($tags as $tag) {
+					DB::table("post_tags")->insert([
+						'tag_id' => $tag,
+						'article_id' => $last_id->id,
+					]);
+				}
+			}
 
             CRUDBooster::redirect(CRUDBooster::mainpath(), trans("crudbooster.alert_add_data_success"), 'success');
         }
@@ -444,13 +444,16 @@ $this->addaction[] = ['label'=>'Set Pending','url'=>CRUDBooster::mainpath('set-s
 
             DB::table("post_tags")->where('article_id', $id)->delete();
 
-            $tags = $_POST['tags'];
+			$tags = $_POST['tags'];
+
+			if($tags !=null){
             foreach ($tags as $tag) {
                 DB::table("post_tags")->insert([
                     'tag_id' => $tag,
                     'article_id' => $id,
                 ]);
-            }
+            	}
+			}
 
             CRUDBooster::redirect(CRUDBooster::mainpath(), trans("crudbooster.alert_update_data_success"), 'success');
         }
