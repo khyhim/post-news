@@ -33,8 +33,8 @@ class AppServiceProvider extends ServiceProvider
         View::share('adsheadline',AdsPost::where('adsposition_id',1)->where('active',1)->first());
         View::share('articleview', Article::orderBy('view', 'DESC')->paginate(8));
         View::share('article', Article::orderBy('id', 'DESC')->paginate(8));
-        View::share('categorysssss', Categories::orderBy('id', 'ASC')->where('order_level',1)->get());
-        View::share('tagssss', Tag::orderBy('id', 'DESC')->where('order_level',1)->get());
+        View::share('categorysssss', Categories::orderBy('id', 'ASC')->where('active',1)->get());
+        View::share('tagssss', Tag::orderBy('id', 'DESC')->where('active',1)->get());
        View::share('socialssssss', Social::orderBy('id', 'ASC')->where('status',1)->get());
        View::share('generalSitting', GeneralSitting::first());
         View::share('adspressbarbottom', AdsPost::orderBy('id', 'desc')->where('adsposition_id',6)->get());

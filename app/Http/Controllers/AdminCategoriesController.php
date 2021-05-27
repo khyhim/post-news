@@ -32,14 +32,14 @@
 			$this->col = [];
 			$this->col[] = ["label"=>"Title Kh","name"=>"ctitle_kh"];
 			$this->col[] = ["label"=>"Title En","name"=>"ctitle_en"];
-			$this->col[] = ["label"=>"Order Level","name"=>"order_level"];
+			$this->col[] = ["label"=>"Active","name"=>"active","width"  => "10%",
+			"callback_php"=>'number_format($row->active)== 1 ? "ON" : "OFF"'];
 			# END COLUMNS DO NOT REMOVE THIS LINE
 
 			# START FORM DO NOT REMOVE THIS LINE
 			$this->form = [];
 			$this->form[] = ['label'=>'Title Kh','name'=>'ctitle_kh','type'=>'text','width'=>'col-sm-10'];
 			$this->form[] = ['label'=>'Title En','name'=>'ctitle_en','type'=>'text','width'=>'col-sm-10'];
-			$this->form[] = ['label'=>'Order Level','name'=>'order_level','type'=>'select','validation'=>'required|integer','width'=>'col-sm-10','dataenum'=>'0;1;2'];
 			# END FORM DO NOT REMOVE THIS LINE
 
 			# OLD START FORM
@@ -77,7 +77,9 @@
 	        */
 	        $this->addaction = array();
 
-
+			$this->addaction[] = ['label'=>'Set Active','url'=>CRUDBooster::mainpath('set-status/0/[id]'),'icon'=>'fa fa-check','color'=>'success','showIf'=>"[active] == '1'"];
+			$this->addaction[] = ['label'=>'Set Pending','url'=>CRUDBooster::mainpath('set-status/1/[id]'),'icon'=>'fa fa-ban','color'=>'warning','showIf'=>"[active] == '0'", 'confirmation' => true];
+				
 	        /* 
 	        | ---------------------------------------------------------------------- 
 	        | Add More Button Selected
@@ -324,5 +326,10 @@
 
 	    //By the way, you can still create your own method in here... :) 
 
-
+		public function getSetStatus($status,$id) {
+			DB::table('categories')->where('id',$id)->update(['active'=>$status]);
+	
+		//This will redirect back and gives a message
+			CRUDBooster::redirect($_SERVER['HTTP_REFERER'],"The status product has been updated !","info");
+	 }
 	}

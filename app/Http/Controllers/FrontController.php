@@ -18,7 +18,7 @@ class FrontController extends Controller
     public function index(){
 
 
-      $categorylast = Categories::orderBy('id', 'ASC')->where('order_level',2)->get();
+      $categorylast = Categories::orderBy('id', 'ASC')->where('active',1)->get();
      
       $entertainment = Article::orderBy('id', 'desc')->where('categories_id',1)->paginate(8);
       $entertainmentleft = Article::orderBy('id', 'desc')->where('categories_id',1)->paginate(1);
@@ -51,7 +51,7 @@ class FrontController extends Controller
 
   public function press($id,Request $request){
 
-    $categorylast = Categories::orderBy('id', 'ASC')->where('order_level',2)->get();
+    $categorylast = Categories::orderBy('id', 'ASC')->where('active',1)->get();
   
     $pressall=Article::orderBy('id', 'DESC')->where('categories_id',$id)->paginate(15); 
      
@@ -70,7 +70,7 @@ class FrontController extends Controller
     //dd($cms_users->name);
     $wordCount = DB::table('comments')->where('article_id', '=', $id)->count();    
 
-    $categorylast = Categories::orderBy('id', 'ASC')->where('order_level',2)->get();
+    $categorylast = Categories::orderBy('id', 'ASC')->where('active',1)->get();
    
 
     $countview = Article::where('view',$id); 
@@ -100,7 +100,7 @@ $relat_posts =  DB::table('post_tags')
 
       public function tag($id){
 
-          $categorylast = Categories::orderBy('id', 'ASC')->where('order_level',2)->get();
+          $categorylast = Categories::orderBy('id', 'ASC')->where('active',1)->get();
           $tagall =  DB::table('post_tags')
               ->select('post_tags.tag_id','post_tags.article_id','tags.id','articles.id','articles.images','articles.title_kh','articles.title_en','articles.description_kh','articles.description_en')
               ->join('articles','articles.id','=','post_tags.article_id')

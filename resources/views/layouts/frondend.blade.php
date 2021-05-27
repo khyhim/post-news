@@ -104,7 +104,7 @@
                 
                 @foreach ($tagssss as $tags)      
                     <li class="tag" id="road-home-3">
-                         <a href="{{route('tag',['id'=>$tags->id])}}" class="web menu_road-home-3">
+                         {{-- <a href="{{route('tag',['id'=>$tags->id])}}" class="web menu_road-home-3">
                         
                         @if(Session::has('lang')) 
                       @if($lang == 'kh')                          
@@ -114,6 +114,20 @@
                       @endif @else 
                      
                       <img class="lozad" src="{{asset('')}}/{{$tags->title_kh}}" />
+                      @endif
+                         </a>
+                            
+                    </li> --}}
+                             <a href="{{route('tag',['id'=>$tags->id])}}" class="web menu_road-home-3">
+                        
+                        @if(Session::has('lang')) 
+                      @if($lang == 'kh')                          
+                        {{$tags->tag_title_kh}}
+                      @else 
+                       {{$tags->tag_title_en}}
+                      @endif @else 
+                     
+                      {{$tags->tag_title_kh}}
                       @endif
                          </a>
                             
