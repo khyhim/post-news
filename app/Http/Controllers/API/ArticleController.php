@@ -10,80 +10,37 @@ use DB;
 use Validator;
 class ArticleController extends Controller
 {
-    public function getArticle() {
-        
-        $articleapi = Article::select('id', 'user_id', 'categories_id', 
-        	'title_kh','title_en','description_kh','description_en',
-        	'images','article_kh','article_en','view')->get();
-
-        // $cate = [];
-        // foreach($datas as $key => $data) {
-
-        //     $article = DB::table('articles')
-        //         ->whereCategoryId($data->cateId)->get();
-
-        //     $cate[] = [
-        //         'categoryName' => $data->name,
-        //         'description' => $data->article,
-        //         'posts' => $article
-        //     ];
-        // }
-
+    public function index(Request $request) {
+        // using per_page //http://localhost:8000/api/getpost?per_page=1&page=2
+        $data = Article::select('*')->paginate($request->per_page);
         return Response::json([
+            'message'=>'success',
+            'success'=> true,
             'code' => 200,// status OK
-            //'data' => $cate
-            'data'=>$articleapi
+            'data' => $data->items()
         ]);
         
     }
-
-  public function getDetail($id){
-     $articleapi = Article::select('id', 'user_id', 'categories_id', 
-            'title_kh','title_en','description_kh','description_en',
-            'images','article_kh','article_en','view')->where('id',$id)->first();
-
-        // $cate = [];
-        // foreach($datas as $key => $data) {
-
-        //     $article = DB::table('articles')
-        //         ->whereCategoryId($data->cateId)->get();
-
-        //     $cate[] = [
-        //         'categoryName' => $data->name,
-        //         'description' => $data->article,
-        //         'posts' => $article
-        //     ];
-        // }
-
+    public function getCategoryArticle($id,Request $request) {
+        // using per_page //http://localhost:8000/api/getpost?per_page=1&page=2
+        $data = Article::select('id','categories_id','title_kh','images','description_kh','article_kh','created_at')->where('categories_id',$id)->paginate($request->per_page);
         return Response::json([
+            'message'=>'success',
+            'success'=> true,
             'code' => 200,// status OK
-            //'data' => $cate
-            'data'=>$articleapi
+            'data' => $data->items()
         ]);
-  }
-
-    // public function postCategory(Request $request) {
-
-    //     $validation = Validator::make($request->all(),[ 
-    //         'name' => 'required',
-    //         'article' => 'required',
-    //     ]);
-    
-    //     if($validation->fails()){
-    //         return Response::json([
-    //             'code' => 200,// status OK
-    //             'message' => $validation->messages()
-
-    //         ]);
-            
-    //     }
         
-    //     $cate = Category::create($request->all());
-
-    //     return Response::json([
-    //         'code' => 200,// status OK
-    //         'message' => 'Category have been saved.'
-    //     ]);
-
-    // }
+    }
+    
+  public function getDetail($id){
+     $data = Article::select('*')->where('id',$id)->first();
+     return Response::json([
+        'message'=>'success',
+        'success'=> true,
+        'code' => 200,// status OK
+        'data' => $data->items()
+    ]);
+  }
+  
 }

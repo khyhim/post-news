@@ -16,7 +16,9 @@
     Route::get('/', ['uses' => 'FrontController@index', 'as' => 'index']);
     Route::get('/press/{id}', ['uses' => 'FrontController@press', 'as' => 'press']);    
     Route::get('/pressrelease/{id}', ['uses' => 'FrontController@pressrelease', 'as' => 'pressrelease']);
-    Route::get('/tag/{id}', ['uses' => 'FrontController@tag', 'as' => 'tag']);    
+    Route::get('/tag/{id}', ['uses' => 'FrontController@tag', 'as' => 'tag']); 
+    Route::get('/ads', ['uses' => 'FrontController@ads', 'as' => 'ads']);
+    Route::get('/about', ['uses' => 'FrontController@about', 'as' => 'about']);   
     //route Language
     Route::get('lang/{lang}', function($lang) {
         \Session::put('lang', $lang);

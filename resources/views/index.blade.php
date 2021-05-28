@@ -9,7 +9,7 @@
 
                     @foreach ($frontPost as $socialsefts)
                         <div class="col-sm-7 item">
-                            <a class="get" rel="{{ $socialsefts->id }}" href="{{route('pressrelease',$socialsefts->id)}}?pressrelease={{$socialsefts->categories_id}}">
+                            <a class="get" rel="{{ $socialsefts->id }}" href="{{route('pressrelease',$socialsefts->id)}}">
 
                                 <div class="img lozad" data-background-image="{{asset('')}}/{{$socialsefts->images}}" data-loaded="true" style="background-image: url('{{asset('')}}/{{$socialsefts->images}}');"></div>
                                 <div class="mean-decription">

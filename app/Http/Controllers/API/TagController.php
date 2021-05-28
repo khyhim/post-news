@@ -5,58 +5,38 @@ namespace App\Http\Controllers\API;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Tag;
+use App\PostTag;
 use Response;
 use DB;
 use Validator;
 class TagController extends Controller
 {
-    public function getTag() {
+    public function index() {
         
-        $tagapi = Tag::select('id', 'title_kh', 'title_en', 'order_level')->get();
+        $data = Tag::select('id', 'tag_title_kh', 'title_kh')->where('active',1)->get();
 
-        // $cate = [];
-        // foreach($datas as $key => $data) {
-
-        //     $article = DB::table('articles')
-        //         ->whereCategoryId($data->cateId)->get();
-
-        //     $cate[] = [
-        //         'categoryName' => $data->name,
-        //         'description' => $data->article,
-        //         'posts' => $article
-        //     ];
-        // }
-
-        return Response::json([
+        return \Response::json([
+            'message'=>'success',
+            'success'=> true,
             'code' => 200,// status OK
-            //'data' => $cate
-            'tagapi'=>$tagapi
+            'data' => $data
         ]);
         
     }
 
-    // public function postCategory(Request $request) {
+    public function getPostTagDetail($id,Request $request) {
 
-    //     $validation = Validator::make($request->all(),[ 
-    //         'name' => 'required',
-    //         'article' => 'required',
-    //     ]);
-    
-    //     if($validation->fails()){
-    //         return Response::json([
-    //             'code' => 200,// status OK
-    //             'message' => $validation->messages()
+        $data =  PostTag::select('post_tags.tag_id','post_tags.article_id','tags.id','articles.id','articles.images','articles.title_kh','articles.description_kh')
+        ->join('articles','articles.id','=','post_tags.article_id')
+        ->join('tags','tags.id','=','post_tags.tag_id')
+       ->where('post_tags.tag_id',$id)->orderBy('articles.id','DESC')->paginate($request->per_page);
 
-    //         ]);
-            
-    //     }
-        
-    //     $cate = Category::create($request->all());
+        return \Response::json([
+            'message'=>'success',
+            'success'=> true,
+            'code' => 200,// status OK
+            'data' => $data->items()
+        ]);
 
-    //     return Response::json([
-    //         'code' => 200,// status OK
-    //         'message' => 'Category have been saved.'
-    //     ]);
-
-    // }
+    }
 }

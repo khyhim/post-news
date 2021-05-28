@@ -19,16 +19,14 @@ use Illuminate\Http\Request;
 
 Route::group(['prefix' => 'cmspost'], function() {
     //api get All Article information
-    Route::get('/get-category', 'API\CategoryController@getCategory');
-    Route::get('/get-article', 'API\ArticleController@getArticle');
-    Route::get('/get-comments', 'API\CommentsController@getComments');
+    Route::get('/get-category', 'API\CategoryController@index');
+    Route::get('/get-article', 'API\ArticleController@index');
+    Route::get('/get-category-article/{id}', 'API\ArticleController@getCategoryArticle');
     Route::get('/get-detail/{id}', 'API\ArticleController@getDetail');     
 
     //api get tag information
-    Route::get('/get-tag', 'API\TagController@getTag');
-    Route::get('/get-posttag', 'API\PostTagController@getPostTag');
-    Route::get('/get-tagbanner', 'API\TagBannersController@getTagBanner');
-   Route::get('/get-tagdetail/{id}', 'API\PostTagController@getPostTagDetail');
+    Route::get('/get-tag', 'API\TagController@index');
+    Route::get('/get-tag-detail/{id}', 'API\TagController@getPostTagDetail');
 
 
     //api get all ads information

@@ -136,13 +136,13 @@
                      
        
               <li class="link">
-                  <a href="#" class="web">
+                  <a href="{{url('ads')}}" class="web">
                  ផ្សព្វផ្សាយ
                   </a>
                  
                 </li>
         <li class="link">
-                  <a href="#" class="web">
+                  <a href="{{url('about')}}" class="web">
                  អំពីយើង
                   </a>
                  

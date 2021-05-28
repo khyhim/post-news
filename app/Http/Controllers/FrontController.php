@@ -37,7 +37,7 @@ class FrontController extends Controller
       $viewddd = Article::orderBy('id', 'desc')->where('categories_id',5)->paginate(11);
 
       $frontPost =  DB::table('articles')
-      ->select('articles.*','categories.*')
+      ->select('articles.*','categories.ctitle_en','categories.ctitle_kh' )
       ->join("categories", "categories.id","=","articles.categories_id")
       ->orderBy('articles.id','DESC')->where('categories_id','!=', 5)->paginate(4);
      
@@ -113,7 +113,16 @@ $relat_posts =  DB::table('post_tags')
               ->with('categorylast',$categorylast)->with('tagall',$tagall)
               ->with('tag',$tag)->with('tagbanner',$tagbanner);
       }
-    
+      public function ads(){
+
+        return view('ads');
+          
+      }
+      public function about(){
+
+        return view('about');
+          
+      }
     
         public function update(Request $request)
           { 
