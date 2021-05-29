@@ -33,14 +33,19 @@ class ArticleController extends Controller
         
     }
     
-  public function getDetail($id){
-     $data = Article::select('*')->where('id',$id)->first();
+  public function getDetail($id,Request $request){
+    
+
+    $data = Article::select('id','title_kh','images','article_kh','view','created_at')->where('id',$id)->first();
      return Response::json([
         'message'=>'success',
         'success'=> true,
         'code' => 200,// status OK
-        'data' => $data->items()
+        'data' => $data
     ]);
   }
+
+
+
   
 }

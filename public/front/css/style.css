@@ -10737,12 +10737,12 @@ nav#menu .nav>li.more{
     position:absolute;
     top:0;
     left:0;
-    bottom:0;
+    bottom: 0px;
     right:0;
     background-color:#161616;
     background-position:center center;
     background-repeat:no-repeat;
-    background-size:calc(100% + 10px) auto
+    background-size:calc(100% + 10px) auto;
 }
 .box:before{
     padding-top:100%
@@ -10904,25 +10904,25 @@ nav#menu .nav>li.more{
 .hot-news .item:nth-child(8) {
     position: absolute;
     left: 25px;
-    bottom: 40px;
+    bottom: 6px;
     width: 16%;
 }
 .hot-news .item:nth-child(9) {
     position: absolute;
     left: 208px;
-    bottom: 40px;
+    bottom: 5px;
     width: 16%;
 }
 .hot-news .item:nth-child(10) {
     position: absolute;
     left: 389px;
-    bottom: 16px;
+    bottom: 5px;
     width: 16%;
 }
 .hot-news .item:nth-child(11) {
     position: absolute;
     left: 571px;
-    bottom: 16px;
+    bottom: 29px;
     width: 16%;
 }
 li#road-home-3 {
