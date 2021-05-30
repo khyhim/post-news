@@ -369,7 +369,27 @@ $this->addaction[] = ['label'=>'Set Pending','url'=>CRUDBooster::mainpath('set-s
                $user_id = $uid;
             }
             $images = CRUDBooster::uploadFile('images', false, '', '', 'post_photo');
-            DB::table('articles')->insert([
+           
+			//first 1
+			//copy all input insert hare
+			//it is database name articles
+			//get id post [postnotification_id]
+			$postnotification_id = DB::table('articles')->insertGetId([
+				'title_kh' => Input::get('title_kh'),
+                'title_en' => Input::get('title_en'),
+                'article_kh' => Input::get('article_kh'),
+                'article_en' => Input::get('article_en'),
+                'description_kh' => Input::get('description_kh'),
+                'description_en' => Input::get('description_en'),
+                'active' => Input::get('active'),
+                'categories_id' => Input::get('categories_id'),
+                'user_id'      =>  $user_id,
+                'images' => $images
+				
+				]);
+				
+			
+			DB::table('articles')->insert([
                 'title_kh' => Input::get('title_kh'),
                 'title_en' => Input::get('title_en'),
                 'article_kh' => Input::get('article_kh'),
@@ -385,6 +405,8 @@ $this->addaction[] = ['label'=>'Set Pending','url'=>CRUDBooster::mainpath('set-s
 
             $last_id = DB::table('articles')->latest('id')->first();
 
+			
+	
 			$tags = $_POST['tags'];
 			if($last_id !=null &&  $tags !=null){
 				foreach ($tags as $tag) {
@@ -394,6 +416,14 @@ $this->addaction[] = ['label'=>'Set Pending','url'=>CRUDBooster::mainpath('set-s
 					]);
 				}
 			}
+
+			//second
+			$config['content'] = Input::get('title_kh');
+			//$config['to'] = CRUDBooster::adminPath('articles');
+			$config['to'] = CRUDBooster::adminPath('articles/edit/'.$postnotification_id);
+			$config['id_cms_users'] = [1]; //This is an array of id users
+			CRUDBooster::sendNotification($config);
+
 
             CRUDBooster::redirect(CRUDBooster::mainpath(), trans("crudbooster.alert_add_data_success"), 'success');
         }
