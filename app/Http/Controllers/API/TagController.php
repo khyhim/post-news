@@ -12,8 +12,8 @@ use Validator;
 class TagController extends Controller
 {
     public function index() {
-        
-        $data = Tag::select('id', 'tag_title_kh', 'title_kh')->where('active',1)->get();
+
+        $data = Tag::select('id', 'tag_title_kh', 'tag_title_en')->get();
 
         return \Response::json([
             'message'=>'success',
@@ -21,12 +21,12 @@ class TagController extends Controller
             'code' => 200,// status OK
             'data' => $data
         ]);
-        
+
     }
 
     public function getPostTagDetail($id,Request $request) {
 
-        $data =  PostTag::select('post_tags.tag_id','post_tags.article_id','tags.id','articles.id','articles.images','articles.title_kh','articles.description_kh')
+        $data =  PostTag::select('post_tags.tag_id','post_tags.article_id','tags.id','articles.id','articles.images','articles.created_at','articles.title_kh','articles.description_kh')
         ->join('articles','articles.id','=','post_tags.article_id')
         ->join('tags','tags.id','=','post_tags.tag_id')
        ->where('post_tags.tag_id',$id)->orderBy('articles.id','DESC')->paginate($request->per_page);

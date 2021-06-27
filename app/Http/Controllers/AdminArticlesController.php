@@ -389,7 +389,7 @@ $this->addaction[] = ['label'=>'Set Pending','url'=>CRUDBooster::mainpath('set-s
 				]);
 				
 			
-			DB::table('articles')->insert([
+				$data =  DB::table('articles')->insert([
                 'title_kh' => Input::get('title_kh'),
                 'title_en' => Input::get('title_en'),
                 'article_kh' => Input::get('article_kh'),
@@ -402,6 +402,8 @@ $this->addaction[] = ['label'=>'Set Pending','url'=>CRUDBooster::mainpath('set-s
                 'images' => $images
             ]);
 
+			
+		
 
             $last_id = DB::table('articles')->latest('id')->first();
 
@@ -416,7 +418,11 @@ $this->addaction[] = ['label'=>'Set Pending','url'=>CRUDBooster::mainpath('set-s
 					]);
 				}
 			}
-
+			//sent email
+			// $data = ['name'=>'John Doe'];
+			// // dd($data );
+			// CRUDBooster::sendEmail(['to'=>'rotiny12345@gmail.com',
+			// 'data'=>$data,'template'=>'send']);
 			//second
 			$config['content'] = Input::get('title_kh');
 			//$config['to'] = CRUDBooster::adminPath('articles');
